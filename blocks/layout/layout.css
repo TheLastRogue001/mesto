@@ -1,0 +1,16 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "content content content"
+    "footer footer footer";
+  grid-template-rows: 159px 1fr 144px;
+  grid-template-columns: 1fr;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  .layout {
+    grid-template-rows: 126px 1fr 98px;
+  }
+}

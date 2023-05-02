@@ -1,0 +1,4 @@
+.content {
+  grid-area: content;
+  grid-template-rows: repeat(3, 1fr);
+}
