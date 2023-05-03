@@ -1,0 +1,9 @@
+.element__like {
+  align-self: center;
+  margin-right: 20px;
+  transition: opacity 0.5s, visibility 0s linear 0.5s;
+}
+.element__like:hover {
+  opacity: 0.5;
+  transition: opacity 0.5s, visibility 0s linear 0.5s;
+}
