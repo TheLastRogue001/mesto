@@ -21,7 +21,16 @@
           <img class="profile__avatar" alt="Аватар" src="./images/Avatar.png" />
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button data-trigger class="profile__edit-button"></button>
+            <div class="profile__form">
+              <div class="profile__form-content">
+                <button class="profile__form-close"></button>
+                <h2 class="profile__form-title">Редактировать профиль</h2>
+                <input class="profile__form-input" />
+                <input class="profile__form-input" />
+                <button class="profile__form-save">Сохранить</button>
+              </div>
+            </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
           <button class="profile__add-button"></button>
@@ -69,7 +78,7 @@
               alt=""
               class="element__img"
             />
-            <h2 class="element__title">Каньон как дела?</h2>
+            <h2 class="element__title">Каньон</h2>
             <img src="./images/like.svg" alt="Лайк" class="element__like" />
           </div>
           <div class="element">
@@ -88,4 +97,5 @@
       </footer>
     </div>
   </body>
+  <script src="./pages/index.js"></script>
 </html>

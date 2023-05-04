@@ -25,3 +25,5 @@
 /* Footer */
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/footer__copyright/footer__copyright.css");
+/* Modal */
+@import url("../blocks/profile/profile__form/profile__form.css");

@@ -1,0 +1,76 @@
+.profile__form {
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: opacity 0.3s, background-color 0.5s;
+}
+
+.is-open {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.profile__form-content {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 358px;
+  max-height: 259px;
+  padding: 34px 36px 37px;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.profile__form-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0;
+}
+
+.profile__form-input {
+  opacity: 0.2;
+  border: none
+  border-bottom: 1px solid #000000;
+}
+
+.profile__form-save {
+  margin-top: auto;
+  width: 358px;
+  height: 50px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 2px;
+}
+
+.profile__form-close {
+  position: absolute;
+  top: 35%;
+  left: 66%;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-color: #0000;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  padding: 0;
+}
