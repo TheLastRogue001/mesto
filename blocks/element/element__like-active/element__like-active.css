@@ -1,7 +1,7 @@
-.element__like {
+.element__like-active {
   width: 22px;
   height: 19px;
-  background-image: url(../../../images/like.svg);
+  background-image: url(../../../images/like-active.svg);
   background-color: none;
   background-repeat: no-repeat;
   background-size: contain;
@@ -11,7 +11,7 @@
   align-self: center;
   transition: opacity 0.5s, visibility 0s linear 0.5s;
 }
-.element__like:hover {
+.element__like-active:hover {
   opacity: 0.5;
   transition: opacity 0.5s, visibility 0s linear 0.5s;
 }
