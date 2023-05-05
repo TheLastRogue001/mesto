@@ -12,12 +12,100 @@
   </head>
   <body class="page">
     <div class="layout">
-      <header class="header"></header>
+      <header class="header">
+        <img class="header__logo" alt="Место" src="./images/logo_mesto.svg" />
+        <div class="header__line"></div>
+      </header>
       <main class="content">
-        <section class="profile"></section>
-        <section class="elements"></section>
+        <section class="profile">
+          <img class="profile__avatar" alt="Аватар" src="./images/Avatar.png" />
+          <div class="profile__info">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button data-trigger class="profile__edit-button"></button>
+            <div class="profile__form">
+              <div class="profile__form-content">
+                <h2 class="profile__form-title">Редактировать профиль</h2>
+                <input
+                  class="profile__form-input"
+                  type="text"
+                  id="name_input"
+                  value="Жак-Ив Кусто"
+                />
+                <input
+                  class="profile__form-input"
+                  type="text"
+                  id="job_input"
+                  value="Исследователь океана"
+                />
+                <button type="submit" id="submit" class="profile__form-save">Сохранить</button>
+              </div>
+              <button class="profile__form-close"></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+          <button class="profile__add-button"></button>
+        </section>
+        <section class="elements">
+          <div class="element">
+            <img
+              src="./images/alex-1088404-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Карачевск</h2>
+            <div class="element__like"></div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/kristaps-ungurs-VkuRDf0lm5c-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Утренний лес</h2>
+            <div class="element__like"></div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/neom-0rvKw0fDiHk-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Звёздное небо</h2>
+            <div class="element__like"></div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/neom-CuoJHB42D1I-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Подводный мир</h2>
+            <div class="element__like"></div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/neom-s3leOixsIX0-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Каньон</h2>
+            <div class="element__like"></div>
+          </div>
+          <div class="element">
+            <img
+              src="./images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg"
+              alt=""
+              class="element__img"
+            />
+            <h2 class="element__title">Тропики</h2>
+            <div class="element__like"></div>
+          </div>
+        </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer">
+        <p class="footer__copyright">© 2023 Александр Шевельков</p>
+      </footer>
     </div>
   </body>
+  <script src="./pages/index.js"></script>
 </html>

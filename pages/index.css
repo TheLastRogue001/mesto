@@ -4,11 +4,27 @@
 @import url("../blocks/layout/layout.css");
 /* Header */
 @import url("../blocks/header/header.css");
+@import url("../blocks/header/header__logo/header__logo.css");
+@import url("../blocks/header/header__line/header__line.css");
 /* Content */
 @import url("../blocks/content/content.css");
 /* Profile  */
 @import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/profile__avatar/profile__avatar.css");
+@import url("../blocks/profile/profile__info/profile__info.css");
+@import url("../blocks/profile/profile__title/profile__title.css");
+@import url("../blocks/profile/profile__subtitle/profile__subtitle.css");
+@import url("../blocks/profile/profile__edit-button/profile__edit-button.css");
+@import url("../blocks/profile/profile__add-button/profile__add-button.css");
 /* Elements */
 @import url("../blocks/elements/elements.css");
+@import url("../blocks/element/element.css");
+@import url("../blocks/element/element__img/element__img.css");
+@import url("../blocks/element/element__title/element__title.css");
+@import url("../blocks/element/element__like/element__like.css");
+@import url("../blocks/element/element__like-active/element__like-active.css");
 /* Footer */
 @import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/footer__copyright/footer__copyright.css");
+/* Modal */
+@import url("../blocks/profile/profile__form/profile__form.css");
