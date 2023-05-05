@@ -9,12 +9,12 @@
 
   const openModal = function () {
     pageYOffset = window.pageYOffset;
-    modal.classList.add("is-open");
+    modal.classList.add("profile__form-open");
     isModalOpen = true;
   };
 
   const closeModal = function () {
-    modal.classList.remove("is-open");
+    modal.classList.remove("profile__form-open");
     isModalOpen = false;
   };
 

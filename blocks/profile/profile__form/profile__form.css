@@ -13,3 +13,9 @@
   background-color: rgba(0, 0, 0, 0);
   transition: opacity 0.3s, background-color 0.5s;
 }
+.profile__form-open {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
