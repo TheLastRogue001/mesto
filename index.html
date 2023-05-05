@@ -24,12 +24,22 @@
             <button data-trigger class="profile__edit-button"></button>
             <div class="profile__form">
               <div class="profile__form-content">
-                <button class="profile__form-close"></button>
                 <h2 class="profile__form-title">Редактировать профиль</h2>
-                <input class="profile__form-input" />
-                <input class="profile__form-input" />
-                <button class="profile__form-save">Сохранить</button>
+                <input
+                  class="profile__form-input"
+                  type="text"
+                  id="name_input"
+                  value="Жак-Ив Кусто"
+                />
+                <input
+                  class="profile__form-input"
+                  type="text"
+                  id="job_input"
+                  value="Исследователь океана"
+                />
+                <button type="submit" id="submit" class="profile__form-save">Сохранить</button>
               </div>
+              <button class="profile__form-close"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
@@ -43,7 +53,7 @@
               class="element__img"
             />
             <h2 class="element__title">Карачевск</h2>
-            <img src="./images/like.svg" alt="Лайк" class="element__like" />
+            <img src="./images/like.svg" alt="Лайк" class="element__like element__like-active" />
           </div>
           <div class="element">
             <img
@@ -79,7 +89,7 @@
               class="element__img"
             />
             <h2 class="element__title">Каньон</h2>
-            <img src="./images/like.svg" alt="Лайк" class="element__like" />
+            <img src="./images/like.svg" alt="Лайк" class="element__like" onclick="checkLike()"/>
           </div>
           <div class="element">
             <img
@@ -88,7 +98,7 @@
               class="element__img"
             />
             <h2 class="element__title">Тропики</h2>
-            <img src="./images/like.svg" alt="Лайк" class="element__like" />
+            <img src="./images/like.svg" alt="Лайк" class="element__like" onclick="checkLike()"/>
           </div>
         </section>
       </main>
