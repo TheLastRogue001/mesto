@@ -1,8 +1,8 @@
 .popup__close {
   cursor: pointer;
-  position: relative;
-  top: 155px;
-  left: 55px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
   width: 32px;
   height: 32px;
   background-image: url(../../../images/close.svg);
@@ -19,10 +19,11 @@
   opacity: 0.6;
   transition: opacity 0.5s, visibility 0s linear 0.5s;
 }
+
 @media screen and (max-width: 767px) {
   .popup__close {
-    top: 87px;
-    left: -16px;
+    top: -36px;
+    right: 0;
     width: 20px;
     height: 20px;
   }
