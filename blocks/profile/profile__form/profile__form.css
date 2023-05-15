@@ -2,11 +2,15 @@
   position: fixed;
   left: 0;
   top: 0;
+<<<<<<< Updated upstream:blocks/profile/profile__form/profile__form.css
   padding-top: 195px;
+=======
+  left: 0;
+>>>>>>> Stashed changes:blocks/popup/popup.css
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   height: 100%;
   pointer-events: all;
   z-index: 1;

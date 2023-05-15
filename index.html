@@ -12,6 +12,31 @@
   </head>
   <body class="page">
     <div class="layout">
+      <div class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="form">
+            <input
+              class="popup__input popup__input_name"
+              name="name-input"
+              type="text"
+              placeholder="Жак-Ив Кусто"
+              required
+              value="Жак-Ив Кусто"
+            />
+            <input
+              class="popup__input popup__input_job"
+              name="job"
+              type="text"
+              placeholder="Исследователь океана"
+              required
+              value="Исследователь океана"
+            />
+            <button type="submit" class="popup__save">Сохранить</button>
+          </form>
+        </div>
+        <button type="button" class="popup__close"></button>
+      </div>
       <header class="header">
         <img class="header__logo" alt="Место" src="./images/logo_mesto.svg" />
         <div class="header__line"></div>

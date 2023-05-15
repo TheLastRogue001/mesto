@@ -1,5 +1,12 @@
+<<<<<<< Updated upstream:blocks/profile/profile__form-content/profile__form-content.css
 .profile__form-content {
   position: absolute;
+=======
+.popup__container {
+  position: relative;
+  top: 195px;
+  left: 50px;
+>>>>>>> Stashed changes:blocks/popup/__container/popup__container.css
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -16,7 +23,15 @@
 }
 
 @media screen and (max-width: 767px) {
+<<<<<<< Updated upstream:blocks/profile/profile__form-content/profile__form-content.css
   .profile__form-content {
+=======
+  .popup__container {
+    top: 123px;
+    left: 8px;
+    row-gap: 0px;
+    height: 272px;
+>>>>>>> Stashed changes:blocks/popup/__container/popup__container.css
     max-width: 238px;
     max-height: 272px;
     margin: 123px 0 0;
