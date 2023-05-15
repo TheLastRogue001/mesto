@@ -4,11 +4,11 @@
   opacity: 0;
   transition: .3s;
   top: 0;
-  left: 17px;
+  left: 0;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   height: 100%;
   pointer-events: all;
   z-index: 1;

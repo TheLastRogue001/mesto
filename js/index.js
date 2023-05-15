@@ -1,3 +1,4 @@
+let page = document.querySelector(".page");
 let content = document.querySelector(".content");
 let popup = document.querySelector(".popup");
 let editButton = content.querySelector(".profile__edit-button");
@@ -10,10 +11,12 @@ let formSubmit = popup.querySelector(".popup__form");
 
 function openPopup() {
   popup.classList.add("popup_opened");
+  page.classList.add("page_overflow_hiden");
 }
 
 function closePopup() {
   popup.classList.remove("popup_opened");
+  page.classList.remove("page_overflow_hiden");
 }
 
 function handleFormSubmit(evt) {
