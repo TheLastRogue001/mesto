@@ -1,0 +1,27 @@
+.popup {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+  top: 0;
+  left: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  pointer-events: all;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@media screen and (max-width: 767px) {
+  .popup {
+    left: 10px;
+  }
+}
+
+.popup_opened {
+  position: fixed;
+  visibility: visible;
+  opacity: 1;
+  transition: .3s;
+}
