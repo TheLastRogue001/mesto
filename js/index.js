@@ -3,8 +3,8 @@ let popup = document.querySelector(".popup");
 let editButton = content.querySelector(".profile__edit-button");
 let titleName = content.querySelector(".profile__title");
 let subtitleJob = content.querySelector(".profile__subtitle");
-let inputName = popup.querySelector(".popup__input:nth-child(1)");
-let inputSubtitle = popup.querySelector(".popup__input:nth-child(2)");
+let inputName = popup.querySelector('#input-name');
+let inputSubtitle = popup.querySelector("#input-job");
 let closeButton = popup.querySelector(".popup__close");
 let formSubmit = popup.querySelector(".popup__form");
 
