@@ -5,7 +5,6 @@ let titleName = content.querySelector(".profile__title");
 let subtitleJob = content.querySelector(".profile__subtitle");
 let inputName = popup.querySelector(".popup__input_name");
 let inputSubtitle = popup.querySelector(".popup__input_job");
-let saveButton = popup.querySelector(".popup__save");
 let closeButton = popup.querySelector(".popup__close");
 let formSubmit = popup.querySelector(".popup__form");
 
@@ -26,5 +25,4 @@ function handleFormSubmit(evt) {
 
 editButton.addEventListener("click", openPopup);
 closeButton.addEventListener("click", closePopup);
-saveButton.addEventListener("click", handleFormSubmit);
 formSubmit.addEventListener("submit", handleFormSubmit);
