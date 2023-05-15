@@ -31,7 +31,7 @@ ___
 
 ##  Ссылка на GitHub Pages:
 
->_https://thelastrogue001.github.io/mesto/index.html_
+https://thelastrogue001.github.io/mesto/index.html
 
 ___
 
