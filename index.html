@@ -27,7 +27,11 @@
             ></button>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button aria-label="Add-button" type="button" class="profile__add-button"></button>
+          <button
+            aria-label="Add-button"
+            type="button"
+            class="profile__add-button"
+          ></button>
         </section>
         <section class="elements">
           <div class="element">
@@ -94,6 +98,7 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" name="popup">
             <input
+              id="input-name"
               class="popup__input"
               name="name-input"
               type="text"
@@ -101,15 +106,22 @@
               required
             />
             <input
+              id="input-job"
               class="popup__input"
               name="job"
               type="text"
               placeholder="Работа"
               required
             />
-            <button aria-label="Save" type="submit" class="popup__save">Сохранить</button>
+            <button aria-label="Save" type="submit" class="popup__save">
+              Сохранить
+            </button>
           </form>
-          <button aria-label="Close" type="button" class="popup__close"></button>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
         </div>
       </div>
     </div>
