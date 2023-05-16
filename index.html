@@ -94,35 +94,39 @@
         <p class="footer__copyright">© 2023 Александр Шевельков</p>
       </footer>
       <div class="popup">
-        <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" name="popup">
-            <input
-              id="input-name"
-              class="popup__input"
-              name="name-input"
-              type="text"
-              placeholder="ФИО"
-              required
-            />
-            <input
-              id="input-job"
-              class="popup__input"
-              name="job"
-              type="text"
-              placeholder="Работа"
-              required
-            />
-            <button aria-label="Save" type="submit" class="popup__save">
-              Сохранить
-            </button>
-          </form>
-          <button
-            aria-label="Close"
-            type="button"
-            class="popup__close"
-          ></button>
-        </div>
+        <template id="popup__container">
+          <div class="popup__container">
+            <h2 class="popup__title"></h2>
+            <form class="popup__form" name="popup">
+              <input
+                id="input-name"
+                class="popup__input"
+                name="name-input"
+                type="text"
+                placeholder=""
+                required
+              />
+              <input
+                id="input-info"
+                class="popup__input"
+                name="info-input"
+                type="text"
+                placeholder=""
+                required
+              />
+              <button
+                aria-label="Save"
+                type="submit"
+                class="popup__save"
+              ></button>
+            </form>
+            <button
+              aria-label="Close"
+              type="button"
+              class="popup__close"
+            ></button>
+          </div>
+        </template>
       </div>
     </div>
     <script src="./js/index.js"></script>
