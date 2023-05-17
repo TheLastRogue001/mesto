@@ -65,18 +65,28 @@ const checkLikeActive = (evt) => {
 };
 
 const setElementCard = () => {
-  initialCards.forEach((item) => {
+  initialCards.forEach((item, index, object) => {
     const elementCard = elementTemplate
       .querySelector(".element")
       .cloneNode(true);
     const elementCardTitle = elementCard.querySelector(".element__title");
     const elementCardImg = elementCard.querySelector(".element__img");
     const likeButton = elementCard.querySelector(".element__like");
+    const trashButton = elementCard.querySelector(".element__trash");
+    const removeElementCard = (event) => {
+      delete object[index];
+      trashButton.parentNode.remove();
+      console.log(initialCards);
+    };
+
     elementCardTitle.textContent = item.name;
     elementCardImg.alt = item.name;
     elementCardImg.src = item.link;
+
     elementsCard.append(elementCard);
+
     likeButton.addEventListener("click", checkLikeActive);
+    trashButton.addEventListener("click", removeElementCard);
   });
 };
 
@@ -125,9 +135,9 @@ const handleFormSubmitEditProfile = (evt) => {
 const handleFormSubmitAddCard = (evt) => {
   evt.preventDefault();
   if (clickedAddCard) {
-    const elementCardDelAll = content.querySelectorAll(".element");
-    for (let i = 0; i < elementCardDelAll.length; i++) {
-      elementCardDelAll[i].remove();
+    const removeElementCardAll = content.querySelectorAll(".element");
+    for (let i = 0; i < removeElementCardAll.length; i++) {
+      removeElementCardAll[i].remove();
     }
     initialCards.unshift({
       name: inputName.value,
