@@ -60,6 +60,10 @@ const initialCards = [
 let clickedEditProfile = false;
 let clickedAddCard = false;
 
+const checkLikeActive = (evt) => {
+  evt.target.classList.toggle("element__like_active");
+};
+
 const setElementCard = () => {
   initialCards.forEach((item) => {
     const elementCard = elementTemplate
@@ -67,12 +71,13 @@ const setElementCard = () => {
       .cloneNode(true);
     const elementCardTitle = elementCard.querySelector(".element__title");
     const elementCardImg = elementCard.querySelector(".element__img");
+    const likeButton = elementCard.querySelector(".element__like");
     elementCardTitle.textContent = item.name;
     elementCardImg.alt = item.name;
     elementCardImg.src = item.link;
     elementsCard.append(elementCard);
+    likeButton.addEventListener("click", checkLikeActive);
   });
-  console.log(initialCards);
 };
 
 setElementCard();
@@ -118,10 +123,12 @@ const handleFormSubmitEditProfile = (evt) => {
 };
 
 const handleFormSubmitAddCard = (evt) => {
+  evt.preventDefault();
   if (clickedAddCard) {
-    evt.preventDefault();
     const elementCardDelAll = content.querySelectorAll(".element");
-    [...[...elementCardDelAll].slice()].forEach((item) => item.remove());
+    for (let i = 0; i < elementCardDelAll.length; i++) {
+      elementCardDelAll[i].remove();
+    }
     initialCards.unshift({
       name: inputName.value,
       link: inputSubtitle.value,
@@ -129,7 +136,6 @@ const handleFormSubmitAddCard = (evt) => {
     setElementCard();
     closePopup();
   }
-  console.log(initialCards);
   clickedAddCard = false;
 };
 
