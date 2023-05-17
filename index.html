@@ -11,31 +11,6 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
-    <div class="popup">
-      <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="form">
-          <input
-            class="popup__input popup__input_name"
-            name="name-input"
-            type="text"
-            placeholder="Жак-Ив Кусто"
-            required
-            value="Жак-Ив Кусто"
-          />
-          <input
-            class="popup__input popup__input_job"
-            name="job"
-            type="text"
-            placeholder="Исследователь океана"
-            required
-            value="Исследователь океана"
-          />
-          <button type="submit" class="popup__save">Сохранить</button>
-        </form>
-      </div>
-      <button type="button" class="popup__close"></button>
-    </div>
     <div class="layout">
       <header class="header">
         <img class="header__logo" alt="Место" src="./images/logo_mesto.svg" />
@@ -45,71 +20,71 @@
           <img class="profile__avatar" alt="Аватар" src="./images/Avatar.png" />
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button"></button>
+            <button
+              aria-label="Edit"
+              type="button"
+              class="profile__edit-button"
+            ></button>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            aria-label="Add-button"
+            type="button"
+            class="profile__add-button"
+          ></button>
         </section>
         <section class="elements">
-          <div class="element">
-            <img
-              src="./images/alex-1088404-unsplash.jpg"
-              alt="Карачевск"
-              class="element__img"
-            />
-            <h2 class="element__title">Карачевск</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-          <div class="element">
-            <img
-              src="./images/kristaps-ungurs-VkuRDf0lm5c-unsplash.jpg"
-              alt="Утренний лес"
-              class="element__img"
-            />
-            <h2 class="element__title">Утренний лес</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-          <div class="element">
-            <img
-              src="./images/neom-0rvKw0fDiHk-unsplash.jpg"
-              alt="Звёздное небо"
-              class="element__img"
-            />
-            <h2 class="element__title">Звёздное небо</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-          <div class="element">
-            <img
-              src="./images/neom-CuoJHB42D1I-unsplash.jpg"
-              alt="Подводный мир"
-              class="element__img"
-            />
-            <h2 class="element__title">Подводный мир</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-          <div class="element">
-            <img
-              src="./images/neom-s3leOixsIX0-unsplash.jpg"
-              alt="Каньон"
-              class="element__img"
-            />
-            <h2 class="element__title">Каньон</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-          <div class="element">
-            <img
-              src="./images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg"
-              alt="Тропики"
-              class="element__img"
-            />
-            <h2 class="element__title">Тропики</h2>
-            <button type="button" class="element__like"></button>
-          </div>
+          <template id="element">
+            <div class="element">
+              <img
+                src="./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg"
+                alt="Долина гор"
+                class="element__img"
+              />
+              <h2 class="element__title">Долина гор</h2>
+              <button type="button" class="element__like"></button>
+            </div>
+          </template>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2023 Александр Шевельков</p>
       </footer>
+      <div class="popup">
+        <template id="popup__container">
+          <div class="popup__container">
+            <h2 class="popup__title"></h2>
+            <form class="popup__form" name="popup">
+              <input
+                id="input-name"
+                class="popup__input"
+                name="name-input"
+                type="text"
+                placeholder=""
+                required
+              />
+              <input
+                id="input-info"
+                class="popup__input"
+                name="info-input"
+                type="text"
+                placeholder=""
+                required
+              />
+              <button
+                aria-label="Save"
+                type="submit"
+                class="popup__save"
+              ></button>
+            </form>
+            <button
+              aria-label="Close"
+              type="button"
+              class="popup__close"
+            ></button>
+          </div>
+        </template>
+      </div>
     </div>
     <script src="./js/index.js"></script>
   </body>
