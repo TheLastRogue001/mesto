@@ -71,12 +71,15 @@ const setElementCard = () => {
       .cloneNode(true);
     const elementCardTitle = elementCard.querySelector(".element__title");
     const elementCardImg = elementCard.querySelector(".element__img");
+    
     const likeButton = elementCard.querySelector(".element__like");
+
     const trashButton = elementCard.querySelector(".element__trash");
-    const removeElementCard = (event) => {
-      delete object[index];
+
+    const removeElementCard = () => {
+      let indexOfItem = object.indexOf(item);
+      object.splice(indexOfItem, 1);
       trashButton.parentNode.remove();
-      console.log(initialCards);
     };
 
     elementCardTitle.textContent = item.name;
