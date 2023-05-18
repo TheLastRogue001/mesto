@@ -96,6 +96,7 @@ const setElementCard = () => {
     const checkFullScreenImage = () => {
       popupImage.classList.add("popup-image_opened");
       elementFullScreenImg.src = item.link;
+      elementFullScreenImg.alt = item.name;
       titlePopupImage.textContent = item.name;
       popupImage.append(popupImageContainer);
     };
