@@ -53,12 +53,12 @@ const initialCards = [
     link: "./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg",
   },
   {
-    name: "Утренний лес",
-    link: "./images/kristaps-ungurs-VkuRDf0lm5c-unsplash.jpg",
+    name: "Озеро",
+    link: "./images/thomas-de-luze-w8PWj40lmAk-unsplash.jpg",
   },
   {
-    name: "Звёздное небо",
-    link: "./images/neom-0rvKw0fDiHk-unsplash.jpg",
+    name: "Пляж",
+    link: "./images/jeff-james-IGzNdZPu4c4-unsplash.jpg",
   },
   {
     name: "Подводный мир",
