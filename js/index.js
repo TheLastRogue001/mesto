@@ -6,6 +6,17 @@ const popupContainerTemplate = popup.querySelector("#popup__container").content;
 const popupContainer = popupContainerTemplate
   .querySelector(".popup__container")
   .cloneNode(true);
+const popupImage = document.querySelector(".popup-image");
+const popupImageContainerTemplate = popupImage.querySelector(
+  "#popup-image__container"
+).content;
+const popupImageContainer = popupImageContainerTemplate
+  .querySelector(".popup-image__container")
+  .cloneNode(true);
+
+// ElementCardImg
+const elementFullScreenImg =
+  popupImageContainer.querySelector(".popup-image__img");
 
 // ElementCard
 const elementsCard = content.querySelector(".elements");
@@ -15,6 +26,9 @@ const elementTemplate = content.querySelector("#element").content;
 const titleName = content.querySelector(".profile__title");
 const subtitleJob = content.querySelector(".profile__subtitle");
 const titlePopup = popupContainer.querySelector(".popup__title");
+const titlePopupImage = popupImageContainer.querySelector(
+  ".popup-image__title"
+);
 
 // Input
 const inputName = popupContainer.querySelector("#input-name");
@@ -24,10 +38,11 @@ const inputSubtitle = popupContainer.querySelector("#input-info");
 const editButton = content.querySelector(".profile__edit-button");
 const addCardButton = content.querySelector(".profile__add-button");
 const closeButton = popupContainer.querySelector(".popup__close");
+const closeImageButton = popupImageContainer.querySelector(".popup-image__close");
 const saveButton = popupContainer.querySelector(".popup__save");
 
 // Form
-const formSubmit = popupContainer.querySelector('[name="popup"]');
+const formSubmit = popupContainer.querySelector('[name="popup-submit"]');
 
 // CardItem
 const initialCards = [
@@ -64,23 +79,34 @@ const checkLikeActive = (evt) => {
   evt.target.classList.toggle("element__like_active");
 };
 
+const closePopupFullScreenImage = () => {
+  popupImage.classList.remove("popup-image_opened");
+};
+
 const setElementCard = () => {
   initialCards.forEach((item, index, object) => {
     const elementCard = elementTemplate
       .querySelector(".element")
       .cloneNode(true);
+
     const elementCardTitle = elementCard.querySelector(".element__title");
+
     const elementCardImg = elementCard.querySelector(".element__img");
-    
-    const likeButton = elementCard.querySelector(".element__like");
+
+    const checkFullScreenImage = () => {
+      popupImage.classList.add("popup-image_opened");
+      elementFullScreenImg.src = item.link;
+      titlePopupImage.textContent = item.name;
+      popupImage.append(popupImageContainer);
+    };
 
     const trashButton = elementCard.querySelector(".element__trash");
-
     const removeElementCard = () => {
-      let indexOfItem = object.indexOf(item);
-      object.splice(indexOfItem, 1);
+      object.splice(object.indexOf(item), 1);
       trashButton.parentNode.remove();
     };
+
+    const likeButton = elementCard.querySelector(".element__like");
 
     elementCardTitle.textContent = item.name;
     elementCardImg.alt = item.name;
@@ -88,8 +114,9 @@ const setElementCard = () => {
 
     elementsCard.append(elementCard);
 
-    likeButton.addEventListener("click", checkLikeActive);
+    elementCardImg.addEventListener("click", checkFullScreenImage);
     trashButton.addEventListener("click", removeElementCard);
+    likeButton.addEventListener("click", checkLikeActive);
   });
 };
 
@@ -155,5 +182,6 @@ const handleFormSubmitAddCard = (evt) => {
 addCardButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditProfile);
 closeButton.addEventListener("click", closePopup);
+closeImageButton.addEventListener("click", closePopupFullScreenImage);
 formSubmit.addEventListener("submit", handleFormSubmitEditProfile);
 formSubmit.addEventListener("submit", handleFormSubmitAddCard);
