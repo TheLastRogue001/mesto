@@ -6,6 +6,17 @@ const popupContainerTemplate = popup.querySelector("#popup__container").content;
 const popupContainer = popupContainerTemplate
   .querySelector(".popup__container")
   .cloneNode(true);
+const popupImage = document.querySelector(".popup-image");
+const popupImageContainerTemplate = popupImage.querySelector(
+  "#popup-image__container"
+).content;
+const popupImageContainer = popupImageContainerTemplate
+  .querySelector(".popup-image__container")
+  .cloneNode(true);
+
+// ElementCardImg
+const elementFullScreenImg =
+  popupImageContainer.querySelector(".popup-image__img");
 
 // ElementCard
 const elementsCard = content.querySelector(".elements");
@@ -15,6 +26,9 @@ const elementTemplate = content.querySelector("#element").content;
 const titleName = content.querySelector(".profile__title");
 const subtitleJob = content.querySelector(".profile__subtitle");
 const titlePopup = popupContainer.querySelector(".popup__title");
+const titlePopupImage = popupImageContainer.querySelector(
+  ".popup-image__title"
+);
 
 // Input
 const inputName = popupContainer.querySelector("#input-name");
@@ -24,10 +38,13 @@ const inputSubtitle = popupContainer.querySelector("#input-info");
 const editButton = content.querySelector(".profile__edit-button");
 const addCardButton = content.querySelector(".profile__add-button");
 const closeButton = popupContainer.querySelector(".popup__close");
+const closeImageButton = popupImageContainer.querySelector(
+  ".popup-image__close"
+);
 const saveButton = popupContainer.querySelector(".popup__save");
 
 // Form
-const formSubmit = popupContainer.querySelector('[name="popup"]');
+const formSubmit = popupContainer.querySelector('[name="popup-submit"]');
 
 // CardItem
 const initialCards = [
@@ -57,44 +74,57 @@ const initialCards = [
   },
 ];
 
+//Проверка на открытие моадльного окна Редактирование профиля
 let clickedEditProfile = false;
+//Проверка на открытие моадльного окна Добавление карточки
 let clickedAddCard = false;
 
+//Добавляет и удаляет активный класс like
 const checkLikeActive = (evt) => {
   evt.target.classList.toggle("element__like_active");
 };
 
 const setElementCard = () => {
   initialCards.forEach((item, index, object) => {
+    // Клонируем elemntCard
     const elementCard = elementTemplate
       .querySelector(".element")
       .cloneNode(true);
     const elementCardTitle = elementCard.querySelector(".element__title");
     const elementCardImg = elementCard.querySelector(".element__img");
-    
-    const likeButton = elementCard.querySelector(".element__like");
-
+    // Функция fullScreen картинки
+    const checkFullScreenImage = () => {
+      popupImage.classList.add("popup-image_opened");
+      elementFullScreenImg.src = item.link;
+      titlePopupImage.textContent = item.name;
+      popupImage.append(popupImageContainer);
+    };
     const trashButton = elementCard.querySelector(".element__trash");
-
+    // Функция удаления карточки
     const removeElementCard = () => {
-      let indexOfItem = object.indexOf(item);
-      object.splice(indexOfItem, 1);
+      object.splice(object.indexOf(item), 1);
       trashButton.parentNode.remove();
     };
+    const likeButton = elementCard.querySelector(".element__like");
 
+    // Создание карточек и изменение контента
     elementCardTitle.textContent = item.name;
     elementCardImg.alt = item.name;
     elementCardImg.src = item.link;
-
     elementsCard.append(elementCard);
 
-    likeButton.addEventListener("click", checkLikeActive);
+    // FullScreen картинки
+    elementCardImg.addEventListener("click", checkFullScreenImage);
+    // Удаление карточки
     trashButton.addEventListener("click", removeElementCard);
+    // Лайкать карточки
+    likeButton.addEventListener("click", checkLikeActive);
   });
 };
 
 setElementCard();
 
+// Открывает модально окно с изменением профиля
 const openPopupEditProfile = () => {
   clickedEditProfile = true;
   popup.classList.add("popup_opened");
@@ -107,6 +137,7 @@ const openPopupEditProfile = () => {
   popup.append(popupContainer);
 };
 
+// Открывает модально окно с добавлением карточки
 const openPopupAddCard = () => {
   clickedAddCard = true;
   popup.classList.add("popup_opened");
@@ -119,12 +150,19 @@ const openPopupAddCard = () => {
   popup.append(popupContainer);
 };
 
+// Функция которая закрывает модальное окно с редактированием профиля или с добавлением карточек
 const closePopup = () => {
   clickedEditProfile = false;
   clickedAddCard = false;
   popup.classList.remove("popup_opened");
 };
 
+// Функция которая закрывает модальное окно с fullScreen картинки
+const closePopupFullScreenImage = () => {
+  popupImage.classList.remove("popup-image_opened");
+};
+
+//Форма для отправки новыых данных имени и работы профиля
 const handleFormSubmitEditProfile = (evt) => {
   if (clickedEditProfile) {
     evt.preventDefault();
@@ -135,13 +173,16 @@ const handleFormSubmitEditProfile = (evt) => {
   clickedEditProfile = false;
 };
 
+//Форма для отправки названия картинки и картинку
 const handleFormSubmitAddCard = (evt) => {
   evt.preventDefault();
   if (clickedAddCard) {
     const removeElementCardAll = content.querySelectorAll(".element");
+    //Удаляет предыдущий массив
     for (let i = 0; i < removeElementCardAll.length; i++) {
       removeElementCardAll[i].remove();
     }
+    //Добавляет к массиву новую карточку с именем и адресом картинки
     initialCards.unshift({
       name: inputName.value,
       link: inputSubtitle.value,
@@ -155,5 +196,6 @@ const handleFormSubmitAddCard = (evt) => {
 addCardButton.addEventListener("click", openPopupAddCard);
 editButton.addEventListener("click", openPopupEditProfile);
 closeButton.addEventListener("click", closePopup);
+closeImageButton.addEventListener("click", closePopupFullScreenImage);
 formSubmit.addEventListener("submit", handleFormSubmitEditProfile);
 formSubmit.addEventListener("submit", handleFormSubmitAddCard);
