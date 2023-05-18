@@ -1,7 +1,6 @@
 .popup-image_opened {
-  display: flex;
   position: fixed;
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear;
+  height: 100%;
 }
