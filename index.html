@@ -51,59 +51,85 @@
       <footer class="footer">
         <p class="footer__copyright">© 2023 Александр Шевельков</p>
       </footer>
-      <div class="popup">
-        <template id="popup__container">
-          <div class="popup__container">
-            <h2 class="popup__title"></h2>
-            <form class="popup__form" name="popup-submit">
-              <input
-                id="input-name"
-                class="popup__input"
-                name="name-input"
-                type="text"
-                placeholder=""
-                required
-              />
-              <input
-                id="input-info"
-                class="popup__input"
-                name="info-input"
-                type="text"
-                placeholder=""
-                required
-              />
-              <button
-                aria-label="Save"
-                type="submit"
-                class="popup__save"
-              ></button>
-            </form>
-            <button
-              aria-label="Close"
-              type="button"
-              class="popup__close"
-            ></button>
-          </div>
-        </template>
-      </div>
-      <div class="popup-image">
-        <template id="popup-image__container">
-          <div class="popup-image__container">
-            <img
-              src="./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg"
-              alt="Долина гор"
-              class="popup-image__img"
+      <div class="popup popup_edit">
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="popup-edit">
+            <input
+              id="input-name"
+              class="popup__input"
+              name="input-name"
+              type="text"
+              placeholder="ФИО"
+              required
             />
-            <h2 class="popup-image__title"></h2>
-            <button
-              aria-label="Close"
-              type="button"
-              class="popup-image__close"
-            ></button>
-          </div>
-        </template>
+            <input
+              id="input-job"
+              class="popup__input"
+              name="input-job"
+              type="text"
+              placeholder="Работа"
+              required
+            />
+            <button aria-label="Save" type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </form>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_card">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" name="popup-card">
+            <input
+              id="input-card"
+              class="popup__input"
+              name="input-card"
+              type="text"
+              placeholder="Название"
+              required
+            />
+            <input
+              id="input-link"
+              class="popup__input"
+              name="input-link"
+              type="text"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <button aria-label="Create" type="submit" class="popup__button">
+              Создать
+            </button>
+          </form>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_fullscreen">
+        <div class="popup__container">
+          <img
+            src="./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg"
+            alt="Долина гор"
+            class="popup__img"
+          />
+          <h2 class="popup__title">Долина гор</h2>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
+        </div>
       </div>
     </div>
+    <script src="./js/cards.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>

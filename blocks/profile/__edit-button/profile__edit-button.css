@@ -9,11 +9,11 @@
   background-position: center;
   border: none;
   opacity: 0.8;
-  transition: opacity 0.5s, visibility 0s linear 0.5s;
+  transition: opacity 0.5s, visibility 0s linear;
 }
 .profile__edit-button:hover {
   opacity: 0.6;
-  transition: opacity 0.5s, visibility 0s linear 0.5s;
+  transition: opacity 0.5s, visibility 0s linear;
 }
 @media screen and (max-width: 767px) {
   .profile__edit-button {

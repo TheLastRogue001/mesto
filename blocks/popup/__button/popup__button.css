@@ -1,4 +1,4 @@
-.popup__save {
+.popup__button {
   cursor: pointer;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -12,14 +12,14 @@
   color: #ffffff;
   background-color: #000000;
   border-radius: 2px;
-  transition: opacity 0.5s, visibility 0s linear 0.5s;
+  transition: opacity 0.5s, visibility 0s linear;
 }
-.popup__save:hover {
+.popup__button:hover {
   opacity: 0.8;
-  transition: opacity 0.5s, visibility 0s linear 0.5s;
+  transition: opacity 0.5s, visibility 0s linear;
 }
 @media screen and (max-width: 767px) {
-  .popup__save {
+  .popup__button {
     font-size: 14px;
     line-height: 17px;
     width: 238px;
