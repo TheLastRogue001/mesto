@@ -5,6 +5,11 @@
   max-width: 816px;
   max-height: 750px;
 }
+@media screen and (max-width: 1100px) {
+  .popup__img {
+    max-width: 650px;
+  }
+}
 @media screen and (max-width: 1023px) {
   .popup__img {
     max-width: 580px;
