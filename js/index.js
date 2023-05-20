@@ -58,15 +58,8 @@ const checkLikeActive = (evt) => {
   evt.target.classList.toggle("element__like_active");
 };
 
-//Добавляет классы для popup__container и popup__title
-const addClassTitleAndContainer = (titlePopup, popupContainer) => {
-  titlePopup.classList.add("popup__title_font-size");
-  popupContainer.classList.add("popup__container_size");
-};
-
 // Открывает модально окно с изменением профиля
 const setEditProfile = () => {
-  addClassTitleAndContainer(titlePopupEdit, popupContainerEdit);
   inputName.value = titleName.textContent;
   inputJob.value = subtitleJob.textContent;
   openPopup(popupEdit);
@@ -74,13 +67,12 @@ const setEditProfile = () => {
 
 // Открывает модально окно с добавлением карточки
 const setAddCard = () => {
-  addClassTitleAndContainer(titlePopupCard, popupContainerCard);
   inputCard.value = "";
   inputLink.value = "";
   openPopup(popupCard);
 };
 
-const elementCardItem = (name, link) => {
+const createElementCardItem = (name, link) => {
   // Клонируем elemntCard
   const elementCard = elementTemplate.querySelector(".element").cloneNode(true);
   const elementCardTitle = elementCard.querySelector(".element__title");
@@ -103,7 +95,6 @@ const elementCardItem = (name, link) => {
   elementCardTitle.textContent = name;
   elementCardImg.alt = name;
   elementCardImg.src = link;
-  elementsCard.prepend(elementCard);
 
   // FullScreen картинки
   elementCardImg.addEventListener("click", checkFullScreenImage);
@@ -111,16 +102,18 @@ const elementCardItem = (name, link) => {
   trashButton.addEventListener("click", removeElementCard);
   // Лайкать карточки
   likeButton.addEventListener("click", checkLikeActive);
+
+  return elementCard;
 };
 
-const setElementCard = () => {
+const renderElementCardItem = () => {
   // Генерация карточек
   initialCards.forEach((item) => {
-    elementCardItem(item.name, item.link);
+    elementsCard.prepend(createElementCardItem(item.name, item.link));
   });
 };
 
-setElementCard();
+renderElementCardItem();
 
 //Форма для отправки новыых данных имени и работы профиля
 const handleFormSubmitEditProfile = (evt) => {
@@ -133,7 +126,7 @@ const handleFormSubmitEditProfile = (evt) => {
 //Форма для отправки названия картинки и картинку
 const handleFormSubmitAddCard = (evt) => {
   evt.preventDefault();
-  elementCardItem(inputCard.value, inputLink.value);
+  elementsCard.prepend(createElementCardItem(inputCard.value, inputLink.value));
   closePopup(popupCard);
 };
 
