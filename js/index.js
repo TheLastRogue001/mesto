@@ -109,7 +109,7 @@ const createElementCardItem = (name, link) => {
 const renderElementCardItem = () => {
   // Генерация карточек
   initialCards.forEach((item) => {
-    elementsCard.prepend(createElementCardItem(item.name, item.link));
+    elementsCard.append(createElementCardItem(item.name, item.link));
   });
 };
 
