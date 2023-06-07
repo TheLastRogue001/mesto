@@ -166,7 +166,6 @@ document.addEventListener('keydown', function (evt) {
   keyHandler(evt, popupFullscreen);
 });
 
-
 // Закрытие popup по нажатию на blum
 document.addEventListener('click', function (evt) {
   if (evt.target === popupEdit) {
@@ -183,16 +182,16 @@ document.addEventListener('click', function (evt) {
 editButton.addEventListener('click', setEditProfile);
 addCardButton.addEventListener('click', setAddCard);
 closeButtonEdit.addEventListener('click', function () {
+  closePopup(popupEdit);
   for (let i = 0; i < inputListEditProfile.length; i++) {
     hideInputError(formSubmitEditProfile, inputListEditProfile[i], validConf);
   }
-  closePopup(popupEdit);
 });
 closeButtonCard.addEventListener('click', function () {
+  closePopup(popupCard);
   for (let i = 0; i < inputListAddCard.length; i++) {
     hideInputError(formSubmitAddCard, inputListAddCard[i], validConf);
   }
-  closePopup(popupCard);
 });
 closeButtonFullscreen.addEventListener('click', function () {
   closePopup(popupFullscreen);
