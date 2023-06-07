@@ -154,44 +154,47 @@ const handleFormSubmitAddCard = (evt) => {
 };
 
 // Функция закрытия попапов по нажатию Esc
-const keyHandler = (evt, popup) => {
+const keyHandler = (evt, popup, formElement, inputElement) => {
   if (evt.keyCode === 27) {
     closePopup(popup);
+    checkExitValidation(formElement, inputElement);
+  }
+};
+
+const checkExitValidation = (formElement, inputList) => {
+  for (let i = 0; i < inputList.length; i++) {
+    hideInputError(formElement, inputList[i], validConf);
   }
 };
 
 document.addEventListener('keydown', function (evt) {
-  keyHandler(evt, popupEdit);
-  keyHandler(evt, popupCard);
-  keyHandler(evt, popupFullscreen);
+  keyHandler(evt, popupEdit, formSubmitEditProfile, inputListEditProfile);
+  keyHandler(evt, popupCard, formSubmitAddCard, inputListAddCard);
+  keyHandler(evt, popupFullscreen, formSubmitEditProfile, inputListEditProfile);
 });
 
 // Закрытие popup по нажатию на blum
 document.addEventListener('click', function (evt) {
   if (evt.target === popupEdit) {
     closePopup(popupEdit);
+    checkExitValidation(formSubmitEditProfile, inputListEditProfile);
   }
   if (evt.target === popupCard) {
     closePopup(popupCard);
+    checkExitValidation(formSubmitAddCard, inputListAddCard);
   }
-  if (evt.target === popupFullscreen) {
-    closePopup(popupFullscreen);
-  }
+  if (evt.target === popupFullscreen) closePopup(popupFullscreen);
 });
 
 editButton.addEventListener('click', setEditProfile);
 addCardButton.addEventListener('click', setAddCard);
 closeButtonEdit.addEventListener('click', function () {
   closePopup(popupEdit);
-  for (let i = 0; i < inputListEditProfile.length; i++) {
-    hideInputError(formSubmitEditProfile, inputListEditProfile[i], validConf);
-  }
+  checkExitValidation(formSubmitEditProfile, inputListEditProfile);
 });
 closeButtonCard.addEventListener('click', function () {
   closePopup(popupCard);
-  for (let i = 0; i < inputListAddCard.length; i++) {
-    hideInputError(formSubmitAddCard, inputListAddCard[i], validConf);
-  }
+  checkExitValidation(formSubmitAddCard, inputListAddCard);
 });
 closeButtonFullscreen.addEventListener('click', function () {
   closePopup(popupFullscreen);
