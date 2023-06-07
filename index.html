@@ -56,23 +56,29 @@
           <h2 class="popup__title popup__title_font-size">
             Редактировать профиль
           </h2>
-          <form class="popup__form" name="popup-edit">
+          <form class="popup__form" name="popup-edit" novalidate>
             <input
-              id="input-name"
+              id="name-input"
               class="popup__input"
               name="input-name"
               type="text"
+              minlength="2"
+              maxlength="40"
               placeholder="ФИО"
               required
             />
+            <span class="popup__input-error name-input-error"></span>
             <input
-              id="input-job"
+              id="job-input"
               class="popup__input"
               name="input-job"
               type="text"
+              minlength="2"
+              maxlength="200"
               placeholder="Работа"
               required
             />
+            <span class="popup__input-error job-input-error"></span>
             <button aria-label="Save" type="submit" class="popup__button">
               Сохранить
             </button>
@@ -87,23 +93,27 @@
       <div class="popup popup_card">
         <div class="popup__container popup__container_size">
           <h2 class="popup__title popup__title_font-size">Новое место</h2>
-          <form class="popup__form" name="popup-card">
+          <form class="popup__form" name="popup-card" novalidate>
             <input
-              id="input-card"
+              id="card-input"
               class="popup__input"
               name="input-card"
               type="text"
+              minlength="2"
+              maxlength="30"
               placeholder="Название"
               required
             />
+            <span class="popup__input-error card-input-error"></span>
             <input
-              id="input-link"
+              id="link-input"
               class="popup__input"
               name="input-link"
-              type="text"
+              type="url"
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="popup__input-error link-input-error"></span>
             <button aria-label="Create" type="submit" class="popup__button">
               Создать
             </button>
@@ -131,6 +141,7 @@
         </div>
       </div>
     </div>
+    <script src="./js/validate.js"></script>
     <script src="./js/cards.js"></script>
     <script src="./js/index.js"></script>
   </body>
