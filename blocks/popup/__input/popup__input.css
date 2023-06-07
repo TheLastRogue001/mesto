@@ -11,14 +11,11 @@
   width: 100%;
 }
 
-.popup__input:focus {
-  outline: none;
-}
-
 .popup__input:hover {
   border-bottom-color: #000;
 }
 
 .popup__input:focus {
   border: 2px solid #007dff;
+  outline: none;
 }
