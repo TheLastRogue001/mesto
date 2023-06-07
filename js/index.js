@@ -48,17 +48,28 @@ const inputListEditProfile = Array.from(
 const inputListAddCard = Array.from(
   formSubmitAddCard.querySelectorAll(validConf.inputSelector)
 );
-const buttonAddCard = formSubmitAddCard.querySelector(
-  validConf.submitButtonSelector
-);
+
+// Функция закрытия попапов по нажатию Esc
+const keyHandler = (evt, popup) => {
+  const escape = 27;
+  if (evt.keyCode === escape) {
+    closePopup(popup);
+  }
+};
 
 // Функция которая открывает модальное окно
 const openPopup = (popup) => {
+  document.addEventListener('keydown', (evt) => {
+    keyHandler(evt, popup);
+  });
   popup.classList.add('popup_opened');
 };
 
 // Функция которая закрывает модальное окно
 const closePopup = (popup) => {
+  document.removeEventListener('keydown', (evt) => {
+    keyHandler(evt, popup);
+  });
   popup.classList.remove('popup_opened');
 };
 
@@ -77,6 +88,7 @@ const setEditProfile = () => {
     validConf.submitButtonSelector,
     validConf
   );
+  removeValidationErrors(formSubmitEditProfile, inputListEditProfile);
   openPopup(popupEdit);
 };
 
@@ -90,8 +102,7 @@ const setAddCard = () => {
     validConf.submitButtonSelector,
     validConf
   );
-  inputListAddCard[1].classList.add('popup__input_margin_top');
-  buttonAddCard.classList.remove('popup__button_margin_top');
+  removeValidationErrors(formSubmitAddCard, inputListAddCard);
   openPopup(popupCard);
 };
 
@@ -153,35 +164,15 @@ const handleFormSubmitAddCard = (evt) => {
   closePopup(popupCard);
 };
 
-// Функция закрытия попапов по нажатию Esc
-const keyHandler = (evt, popup, formElement, inputElement) => {
-  if (evt.keyCode === 27) {
-    closePopup(popup);
-    checkExitValidation(formElement, inputElement);
-  }
-};
-
-const checkExitValidation = (formElement, inputList) => {
-  for (let i = 0; i < inputList.length; i++) {
-    hideInputError(formElement, inputList[i], validConf);
-  }
-};
-
-document.addEventListener('keydown', function (evt) {
-  keyHandler(evt, popupEdit, formSubmitEditProfile, inputListEditProfile);
-  keyHandler(evt, popupCard, formSubmitAddCard, inputListAddCard);
-  keyHandler(evt, popupFullscreen, formSubmitEditProfile, inputListEditProfile);
-});
-
 // Закрытие popup по нажатию на blum
 document.addEventListener('click', function (evt) {
   if (evt.target === popupEdit) {
     closePopup(popupEdit);
-    checkExitValidation(formSubmitEditProfile, inputListEditProfile);
+    removeValidationErrors(formSubmitEditProfile, inputListEditProfile);
   }
   if (evt.target === popupCard) {
     closePopup(popupCard);
-    checkExitValidation(formSubmitAddCard, inputListAddCard);
+    removeValidationErrors(formSubmitAddCard, inputListAddCard);
   }
   if (evt.target === popupFullscreen) closePopup(popupFullscreen);
 });
@@ -190,11 +181,11 @@ editButton.addEventListener('click', setEditProfile);
 addCardButton.addEventListener('click', setAddCard);
 closeButtonEdit.addEventListener('click', function () {
   closePopup(popupEdit);
-  checkExitValidation(formSubmitEditProfile, inputListEditProfile);
+  removeValidationErrors(formSubmitEditProfile, inputListEditProfile);
 });
 closeButtonCard.addEventListener('click', function () {
   closePopup(popupCard);
-  checkExitValidation(formSubmitAddCard, inputListAddCard);
+  removeValidationErrors(formSubmitAddCard, inputListAddCard);
 });
 closeButtonFullscreen.addEventListener('click', function () {
   closePopup(popupFullscreen);

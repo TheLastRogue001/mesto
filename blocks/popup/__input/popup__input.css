@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.popup__input:nth-child(3) {
+  margin-top: 17px;
+}
+
 .popup__input:hover {
   border-bottom-color: #000;
 }
