@@ -49,13 +49,9 @@ const toggleButtonState = (
 ) => {
   const buttonElementContinue = formElement.querySelector(buttonElement);
   if (hasInvalidInput(inputList)) {
-    inputList[1].classList.remove('popup__input_margin_top');
-    buttonElementContinue.classList.add('popup__button_margin_top');
     buttonElementContinue.setAttribute('disabled', true);
     buttonElementContinue.classList.add(validConf.inactiveButtonClass);
   } else {
-    inputList[1].classList.add('popup__input_margin_top');
-    buttonElementContinue.classList.remove('popup__button_margin_top');
     buttonElementContinue.removeAttribute('disabled');
     buttonElementContinue.classList.remove(validConf.inactiveButtonClass);
   }
@@ -76,6 +72,12 @@ const setEventListeners = (formElement, validConf) => {
       );
     });
   });
+};
+
+const removeValidationErrors = (formElement, inputList) => {
+  for (let i = 0; i < inputList.length; i++) {
+    hideInputError(formElement, inputList[i], validConf);
+  }
 };
 
 const enableValidation = (validConf) => {
