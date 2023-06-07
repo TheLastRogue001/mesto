@@ -166,6 +166,8 @@ document.addEventListener('keydown', function (evt) {
   keyHandler(evt, popupFullscreen);
 });
 
+
+// Закрытие popup по нажатию на blum
 document.addEventListener('click', function (evt) {
   if (evt.target === popupEdit) {
     closePopup(popupEdit);
