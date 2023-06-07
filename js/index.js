@@ -153,6 +153,31 @@ const handleFormSubmitAddCard = (evt) => {
   closePopup(popupCard);
 };
 
+// Функция закрытия попапов по нажатию Esc
+const keyHandler = (evt, popup) => {
+  if (evt.keyCode === 27) {
+    closePopup(popup);
+  }
+};
+
+document.addEventListener('keydown', function (evt) {
+  keyHandler(evt, popupEdit);
+  keyHandler(evt, popupCard);
+  keyHandler(evt, popupFullscreen);
+});
+
+document.addEventListener('click', function (evt) {
+  if (evt.target === popupEdit) {
+    closePopup(popupEdit);
+  }
+  if (evt.target === popupCard) {
+    closePopup(popupCard);
+  }
+  if (evt.target === popupFullscreen) {
+    closePopup(popupFullscreen);
+  }
+});
+
 editButton.addEventListener('click', setEditProfile);
 addCardButton.addEventListener('click', setAddCard);
 closeButtonEdit.addEventListener('click', function () {
