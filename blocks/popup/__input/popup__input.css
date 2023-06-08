@@ -1,5 +1,5 @@
 .popup__input {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -7,12 +7,9 @@
   color: #000000;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 13px 0;
+  padding: 0;
+  padding-bottom: 13px;
   width: 100%;
-}
-
-.popup__input:nth-child(3) {
-  margin-top: 17px;
 }
 
 .popup__input:hover {
