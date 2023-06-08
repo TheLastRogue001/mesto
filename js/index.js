@@ -50,26 +50,25 @@ const inputListAddCard = Array.from(
 );
 
 // Функция закрытия попапов по нажатию Esc
-const keyHandler = (evt, popup) => {
+const keyHandler = (popup) => (evt) => {
   const escape = 27;
-  if (evt.keyCode === escape) {
+  const checkKeyEscape = evt.keyCode === escape;
+  if (checkKeyEscape) {
     closePopup(popup);
   }
 };
 
 // Функция которая открывает модальное окно
 const openPopup = (popup) => {
-  document.addEventListener('keydown', (evt) => {
-    keyHandler(evt, popup);
-  });
+  const handlerEscape = keyHandler(popup);
+  document.addEventListener('keydown', handlerEscape);
   popup.classList.add('popup_opened');
 };
 
 // Функция которая закрывает модальное окно
 const closePopup = (popup) => {
-  document.removeEventListener('keydown', (evt) => {
-    keyHandler(evt, popup);
-  });
+  const handlerEscape = keyHandler(popup);
+  document.removeEventListener('keydown', handlerEscape);
   popup.classList.remove('popup_opened');
 };
 
@@ -168,11 +167,9 @@ const handleFormSubmitAddCard = (evt) => {
 document.addEventListener('click', function (evt) {
   if (evt.target === popupEdit) {
     closePopup(popupEdit);
-    removeValidationErrors(formSubmitEditProfile, inputListEditProfile);
   }
   if (evt.target === popupCard) {
     closePopup(popupCard);
-    removeValidationErrors(formSubmitAddCard, inputListAddCard);
   }
   if (evt.target === popupFullscreen) closePopup(popupFullscreen);
 });
