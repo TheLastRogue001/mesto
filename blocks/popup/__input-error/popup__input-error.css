@@ -1,5 +1,7 @@
 .popup__input-error {
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
