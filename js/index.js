@@ -52,16 +52,9 @@ const inputListAddCard = Array.from(
 // Функция закрытия попапов по нажатию Esc
 const keyHandler = (evt) => {
   const escape = 27;
+  const popup = document.querySelector(".popup_opened");
   if (evt.keyCode === escape) {
-    if (popupEdit.classList.contains("popup_opened")) {
-      closePopup(popupEdit);
-    }
-    if (popupCard.classList.contains("popup_opened")) {
-      closePopup(popupCard);
-    }
-    if (popupFullscreen.classList.contains("popup_opened")) {
-      closePopup(popupFullscreen);
-    }
+    closePopup(popup);
   }
 };
 
