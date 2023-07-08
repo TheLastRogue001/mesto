@@ -1,4 +1,4 @@
-import Cards from "./Card.js";
+import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import {
   cardConf,
@@ -32,14 +32,14 @@ const formAddValidator = new FormValidator(validConf, formSubmitAddCard);
 formAddValidator.enableValidation();
 
 //Обработчик Cards
-const setElementsCards = (
+const createCard = (
   data,
   elementTemplate,
   cardConf,
   elementsFullScreen,
   openPopup
 ) => {
-  const card = new Cards(
+  const card = new Card(
     data,
     elementTemplate,
     cardConf,
@@ -103,7 +103,7 @@ const handleFormSubmitAddCard = (evt) => {
     link: inputLink.value,
   };
   elementsCard.prepend(
-    setElementsCards(
+    createCard(
       data,
       elementTemplate,
       cardConf,
@@ -118,7 +118,7 @@ const renderInitialCards = () => {
   // Генерация карточек
   initialCards.forEach((item) => {
     elementsCard.append(
-      setElementsCards(
+      createCard(
         item,
         elementTemplate,
         cardConf,

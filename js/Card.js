@@ -1,4 +1,4 @@
-export default class Cards {
+export default class Card {
   constructor(data, elementTemplate, cardConf, elementsFullScreen, openPopup) {
     this._name = data.name;
     this._link = data.link;
