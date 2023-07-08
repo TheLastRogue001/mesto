@@ -88,6 +88,15 @@ const closeButtonFullscreen = popupFullscreen.querySelector(".popup__close");
 const formSubmitEditProfile = popupContainerEdit.querySelector(".popup__form");
 const formSubmitAddCard = popupContainerCard.querySelector(".popup__form");
 
+//ElementsFullScreen
+const elementsFullScreen = {
+  elementFullScreenImg: elementFullScreenImg,
+  titlePopupFullscreen: titlePopupFullscreen,
+  popupFullscreen: popupFullscreen,
+};
+
+const popupList = [popupEdit, popupCard, popupFullscreen];
+
 export {
   initialCards,
   validConf,
@@ -96,9 +105,11 @@ export {
   popupEdit,
   popupCard,
   popupFullscreen,
+  popupList,
   popupContainerEdit,
   popupContainerCard,
   popupContainerFullscreen,
+  elementsFullScreen,
   elementFullScreenImg,
   elementsCard,
   elementTemplate,

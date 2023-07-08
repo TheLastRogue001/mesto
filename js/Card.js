@@ -1,20 +1,13 @@
-import { openPopup } from "./index.js";
-import {
-  cardConf,
-  initialCards,
-  elementFullScreenImg,
-  titlePopupFullscreen,
-  popupFullscreen,
-  elementsCard,
-  elementTemplate,
-} from "./consts.js";
-
 export default class Cards {
-  constructor(data, elementTemplate, cardConf) {
+  constructor(data, elementTemplate, cardConf, elementsFullScreen, openPopup) {
     this._name = data.name;
     this._link = data.link;
     this._elementTemplate = elementTemplate;
     this._cardConf = cardConf;
+    this._elementFullScreenImg = elementsFullScreen.elementFullScreenImg;
+    this._titlePopupFullscreen = elementsFullScreen.titlePopupFullscreen;
+    this._popupFullscreen = elementsFullScreen.popupFullscreen;
+    this._openPopup = openPopup;
   }
 
   _getTemplate() {
@@ -51,46 +44,35 @@ export default class Cards {
   }
 
   // Функция fullScreen картинки
-  _checkFullScreenImage() {
-    titlePopupFullscreen.textContent = this._name;
-    elementFullScreenImg.alt = this._name;
-    elementFullScreenImg.src = this._link;
-    openPopup(popupFullscreen);
+  _openImagePopup() {
+    this._titlePopupFullscreen.textContent = this._name;
+    this._elementFullScreenImg.alt = this._name;
+    this._elementFullScreenImg.src = this._link;
+    this._openPopup(this._popupFullscreen);
   }
 
   // Функция удаления карточки
   _removeElementCard() {
-    this._trashButton.parentNode.remove();
+    this._elementCard.remove();
   }
 
   //Добавляет и удаляет активный класс like
-  _checkLikeActive(evt) {
-    evt.target.classList.toggle(this._cardConf.likeActiveButton);
+  _handleLikeClick() {
+    this._likeButton.classList.toggle(this._cardConf.likeActiveButton);
   }
 
   _setEventListeners() {
     // FullScreen картинки
     this._elementCardImg.addEventListener("click", () => {
-      this._checkFullScreenImage();
+      this._openImagePopup();
     });
     // Удаление карточки
     this._trashButton.addEventListener("click", () => {
       this._removeElementCard();
     });
     // Лайкать карточки
-    this._likeButton.addEventListener("click", (evt) => {
-      this._checkLikeActive(evt);
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick();
     });
   }
 }
-
-const renderElementCardItem = () => {
-  // Генерация карточек
-  initialCards.forEach((item) => {
-    const card = new Cards(item, elementTemplate, cardConf);
-    const cardElement = card.generateElementCardItem();
-    elementsCard.append(cardElement);
-  });
-};
-
-renderElementCardItem();

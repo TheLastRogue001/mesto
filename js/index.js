@@ -1,13 +1,16 @@
-import FormValidator from "./FormValidator.js";
 import Cards from "./Card.js";
+import FormValidator from "./FormValidator.js";
 import {
   cardConf,
+  initialCards,
   validConf,
   popupEdit,
   popupCard,
   popupFullscreen,
+  popupList,
   elementsCard,
   elementTemplate,
+  elementsFullScreen,
   titleName,
   subtitleJob,
   inputName,
@@ -28,8 +31,27 @@ formEditValidator.enableValidation();
 const formAddValidator = new FormValidator(validConf, formSubmitAddCard);
 formAddValidator.enableValidation();
 
+//Обработчик Cards
+const setElementsCards = (
+  data,
+  elementTemplate,
+  cardConf,
+  elementsFullScreen,
+  openPopup
+) => {
+  const card = new Cards(
+    data,
+    elementTemplate,
+    cardConf,
+    elementsFullScreen,
+    openPopup
+  );
+  const cardElement = card.generateElementCardItem();
+  return cardElement;
+};
+
 // Функция закрытия попапов по нажатию Esc
-const keyHandler = (evt) => {
+const handleClosePopupByEsc = (evt) => {
   const escape = 27;
   const popup = document.querySelector(".popup_opened");
   if (evt.keyCode === escape) {
@@ -39,18 +61,18 @@ const keyHandler = (evt) => {
 
 // Функция которая открывает модальное окно
 export const openPopup = (popup) => {
-  document.addEventListener("keydown", keyHandler);
+  document.addEventListener("keydown", handleClosePopupByEsc);
   popup.classList.add("popup_opened");
 };
 
 // Функция которая закрывает модальное окно
 export const closePopup = (popup) => {
-  document.removeEventListener("keydown", keyHandler);
+  document.removeEventListener("keydown", handleClosePopupByEsc);
   popup.classList.remove("popup_opened");
 };
 
 // Открывает модально окно с изменением профиля
-const setEditProfile = () => {
+const openEditProfilePopup = () => {
   inputName.value = titleName.textContent;
   inputJob.value = subtitleJob.textContent;
   formEditValidator.removeValidationErrors();
@@ -58,7 +80,7 @@ const setEditProfile = () => {
 };
 
 // Открывает модально окно с добавлением карточки
-const setAddCard = () => {
+const openAddCardPopup = () => {
   inputCard.value = "";
   inputLink.value = "";
   formAddValidator.removeValidationErrors();
@@ -80,25 +102,43 @@ const handleFormSubmitAddCard = (evt) => {
     name: inputCard.value,
     link: inputLink.value,
   };
-  const card = new Cards(data, elementTemplate, cardConf);
-  const cardElement = card.generateElementCardItem();
-  elementsCard.prepend(cardElement);
+  elementsCard.prepend(
+    setElementsCards(
+      data,
+      elementTemplate,
+      cardConf,
+      elementsFullScreen,
+      openPopup
+    )
+  );
   closePopup(popupCard);
 };
 
+const renderInitialCards = () => {
+  // Генерация карточек
+  initialCards.forEach((item) => {
+    elementsCard.append(
+      setElementsCards(
+        item,
+        elementTemplate,
+        cardConf,
+        elementsFullScreen,
+        openPopup
+      )
+    );
+  });
+};
+renderInitialCards();
+
 // Закрытие popup по нажатию на blum
-document.addEventListener("click", function (evt) {
-  if (evt.target === popupEdit) {
-    closePopup(popupEdit);
-  }
-  if (evt.target === popupCard) {
-    closePopup(popupCard);
-  }
-  if (evt.target === popupFullscreen) closePopup(popupFullscreen);
+popupList.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) closePopup(popup);
+  });
 });
 
-editButton.addEventListener("click", setEditProfile);
-addCardButton.addEventListener("click", setAddCard);
+editButton.addEventListener("click", openEditProfilePopup);
+addCardButton.addEventListener("click", openAddCardPopup);
 closeButtonEdit.addEventListener("click", function () {
   closePopup(popupEdit);
 });
