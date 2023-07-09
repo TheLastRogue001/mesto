@@ -1,112 +1,131 @@
+import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import Cards from "./Card.js";
+import Section from "./Section.js";
+import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 import {
   cardConf,
+  initialCards,
   validConf,
   popupEdit,
   popupCard,
-  popupFullscreen,
   elementsCard,
   elementTemplate,
-  titleName,
-  subtitleJob,
+  elementsFullScreen,
   inputName,
   inputJob,
-  inputCard,
-  inputLink,
   editButton,
   addCardButton,
-  closeButtonEdit,
-  closeButtonCard,
-  closeButtonFullscreen,
+  buttonsClosePopup,
   formSubmitEditProfile,
   formSubmitAddCard,
 } from "./consts.js";
 
 const formEditValidator = new FormValidator(validConf, formSubmitEditProfile);
 formEditValidator.enableValidation();
+
 const formAddValidator = new FormValidator(validConf, formSubmitAddCard);
 formAddValidator.enableValidation();
 
-// Функция закрытия попапов по нажатию Esc
-const keyHandler = (evt) => {
-  const escape = 27;
-  const popup = document.querySelector(".popup_opened");
-  if (evt.keyCode === escape) {
-    closePopup(popup);
-  }
+const setElementWithImage = new PopupWithImage(
+  elementsFullScreen,
+  elementsFullScreen.popupFullscreen,
+  buttonsClosePopup
+);
+
+const openPopup = (popup) => {
+  const modal = new Popup(popup, buttonsClosePopup);
+  const openModal = modal.open();
+  return openModal;
 };
 
-// Функция которая открывает модальное окно
-export const openPopup = (popup) => {
-  document.addEventListener("keydown", keyHandler);
-  popup.classList.add("popup_opened");
+const createUserInfo = () => {
+  const setUserInfo = new UserInfo({
+    userName: ".profile__title",
+    userInfo: ".profile__subtitle",
+  });
+  return setUserInfo;
 };
 
-// Функция которая закрывает модальное окно
-export const closePopup = (popup) => {
-  document.removeEventListener("keydown", keyHandler);
-  popup.classList.remove("popup_opened");
+//Обработчик Cards
+const createCard = (
+  data,
+  elementTemplate,
+  cardConf,
+  elementsFullScreen,
+  openPopup
+) => {
+  const card = new Card(
+    data,
+    elementTemplate,
+    cardConf,
+    elementsFullScreen,
+    openPopup
+  );
+  const cardElement = card.generateElementCardItem();
+  return cardElement;
 };
 
 // Открывает модально окно с изменением профиля
-const setEditProfile = () => {
-  inputName.value = titleName.textContent;
-  inputJob.value = subtitleJob.textContent;
+const openEditProfilePopup = () => {
+  const userInfo = createUserInfo().getUserInfo();
+  inputName.value = userInfo.name;
+  inputJob.value = userInfo.info;
   formEditValidator.removeValidationErrors();
   openPopup(popupEdit);
 };
 
 // Открывает модально окно с добавлением карточки
-const setAddCard = () => {
-  inputCard.value = "";
-  inputLink.value = "";
+const openAddCardPopup = () => {
   formAddValidator.removeValidationErrors();
   openPopup(popupCard);
 };
 
-//Форма для отправки новыых данных имени и работы профиля
-const handleFormSubmitEditProfile = (evt) => {
-  evt.preventDefault();
-  titleName.textContent = inputName.value;
-  subtitleJob.textContent = inputJob.value;
-  closePopup(popupEdit);
-};
+// Открывает модально окно с изменением профиля
+const handleFormSubmitEditProfile = new PopupWithForm(
+  (data) => {
+    createUserInfo().setUserInfo(data.name, data.job);
+    handleFormSubmitEditProfile.close();
+  },
+  popupEdit,
+  buttonsClosePopup
+);
+
 
 //Форма для отправки названия картинки и картинку
-const handleFormSubmitAddCard = (evt) => {
-  evt.preventDefault();
-  const data = {
-    name: inputCard.value,
-    link: inputLink.value,
-  };
-  const card = new Cards(data, elementTemplate, cardConf);
-  const cardElement = card.generateElementCardItem();
-  elementsCard.prepend(cardElement);
-  closePopup(popupCard);
-};
+const handleFormSubmitAddCard = new PopupWithForm(
+  (item) => {
+    const dataObj = {
+      name: item.card,
+      link: item.link,
+    };
+    elementsCard.prepend(
+      createCard(dataObj, elementTemplate, cardConf, setElementWithImage)
+    );
+    handleFormSubmitAddCard.close();
+  },
+  popupCard,
+  buttonsClosePopup
+);
 
-// Закрытие popup по нажатию на blum
-document.addEventListener("click", function (evt) {
-  if (evt.target === popupEdit) {
-    closePopup(popupEdit);
-  }
-  if (evt.target === popupCard) {
-    closePopup(popupCard);
-  }
-  if (evt.target === popupFullscreen) closePopup(popupFullscreen);
-});
 
-editButton.addEventListener("click", setEditProfile);
-addCardButton.addEventListener("click", setAddCard);
-closeButtonEdit.addEventListener("click", function () {
-  closePopup(popupEdit);
-});
-closeButtonCard.addEventListener("click", function () {
-  closePopup(popupCard);
-});
-closeButtonFullscreen.addEventListener("click", function () {
-  closePopup(popupFullscreen);
-});
-formSubmitEditProfile.addEventListener("submit", handleFormSubmitEditProfile);
-formSubmitAddCard.addEventListener("submit", handleFormSubmitAddCard);
+const renderInitialCards = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      renderInitialCards.addItem(
+        createCard(item, elementTemplate, cardConf, setElementWithImage)
+      );
+    },
+  },
+  elementsCard
+);
+
+
+editButton.addEventListener("click", openEditProfilePopup);
+addCardButton.addEventListener("click", openAddCardPopup);
+handleFormSubmitEditProfile.setEventListeners();
+handleFormSubmitAddCard.setEventListeners();
+renderInitialCards.renderItems();
