@@ -1,28 +1,35 @@
+import dolinaImage from "../images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg";
+import ozeroImage from "../images/thomas-de-luze-w8PWj40lmAk-unsplash.jpg";
+import plyazhImage from "../images/jeff-james-IGzNdZPu4c4-unsplash.jpg";
+import waterImage from "../images/neom-CuoJHB42D1I-unsplash.jpg";
+import kanionImage from "../images/neom-s3leOixsIX0-unsplash.jpg";
+import tropikiImage from "../images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg";
+
 // CardItem
 const initialCards = [
   {
     name: "Долина гор",
-    link: "./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg",
+    link: dolinaImage,
   },
   {
     name: "Озеро",
-    link: "./images/thomas-de-luze-w8PWj40lmAk-unsplash.jpg",
+    link: ozeroImage,
   },
   {
     name: "Пляж",
-    link: "./images/jeff-james-IGzNdZPu4c4-unsplash.jpg",
+    link: plyazhImage,
   },
   {
     name: "Подводный мир",
-    link: "./images/neom-CuoJHB42D1I-unsplash.jpg",
+    link: waterImage,
   },
   {
     name: "Каньон",
-    link: "./images/neom-s3leOixsIX0-unsplash.jpg",
+    link: kanionImage,
   },
   {
     name: "Тропики",
-    link: "./images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg",
+    link: tropikiImage,
   },
 ];
 
@@ -96,6 +103,11 @@ const elementsFullScreen = {
 };
 
 const popupList = [popupEdit, popupCard, popupFullscreen];
+const buttonsClosePopup = [
+  closeButtonEdit,
+  closeButtonCard,
+  closeButtonFullscreen,
+];
 
 export {
   initialCards,
@@ -125,6 +137,7 @@ export {
   closeButtonEdit,
   closeButtonCard,
   closeButtonFullscreen,
+  buttonsClosePopup,
   formSubmitEditProfile,
   formSubmitAddCard,
 };

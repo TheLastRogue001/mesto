@@ -8,16 +8,15 @@
       content="сделал практическую работу Александр Шевельков"
     />
     <title>Проект: Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="layout">
       <header class="header">
-        <img class="header__logo" alt="Место" src="./images/logo_mesto.svg" />
+        <img class="header__logo" alt="Место" src="<%=require('./images/logo_mesto.svg')%>" />
       </header>
       <main class="content">
         <section class="profile">
-          <img class="profile__avatar" alt="Аватар" src="./images/Avatar.png" />
+          <img class="profile__avatar" alt="Аватар" src="<%=require('./images/Avatar.png')%>" />
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button
@@ -38,7 +37,7 @@
             <div class="element">
               <button type="button" class="element__trash"></button>
               <img
-                src="./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg"
+                src="<%=require('./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg')%>"
                 alt="Долина гор"
                 class="element__img"
               />
@@ -60,7 +59,7 @@
             <input
               id="name-input"
               class="popup__input"
-              name="input-name"
+              name="name"
               type="text"
               minlength="2"
               maxlength="40"
@@ -71,7 +70,7 @@
             <input
               id="job-input"
               class="popup__input"
-              name="input-job"
+              name="job"
               type="text"
               minlength="2"
               maxlength="200"
@@ -97,7 +96,7 @@
             <input
               id="card-input"
               class="popup__input"
-              name="input-card"
+              name="card"
               type="text"
               minlength="2"
               maxlength="30"
@@ -108,7 +107,7 @@
             <input
               id="link-input"
               class="popup__input"
-              name="input-link"
+              name="link"
               type="url"
               placeholder="Ссылка на картинку"
               required
@@ -128,7 +127,7 @@
       <div class="popup popup_fullscreen">
         <div class="popup__container">
           <img
-            src="./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg"
+            src="<%=require('./images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg')%>"
             alt="Долина гор"
             class="popup__img"
           />
@@ -144,6 +143,11 @@
     <script src="./js/consts.js" type="module"></script>
     <script src="./js/FormValidator.js" type="module"></script>
     <script src="./js/Card.js" type="module"></script>
+    <script src="./js/PopupWithForm.js" type="module"></script>
+    <script src="./js/PopupWithImage.js" type="module"></script>
+    <script src="./js/Popup.js" type="module"></script>
+    <script src="./js/Section.js" type="module"></script>
+    <script src="./js/UserInfo.js" type="module"></script>
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>
