@@ -1,3 +1,4 @@
+import "../pages/index.css";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
@@ -93,7 +94,6 @@ const handleFormSubmitEditProfile = new PopupWithForm(
   buttonsClosePopup
 );
 
-
 //Форма для отправки названия картинки и картинку
 const handleFormSubmitAddCard = new PopupWithForm(
   (item) => {
@@ -110,7 +110,6 @@ const handleFormSubmitAddCard = new PopupWithForm(
   buttonsClosePopup
 );
 
-
 const renderInitialCards = new Section(
   {
     items: initialCards,
@@ -122,7 +121,6 @@ const renderInitialCards = new Section(
   },
   elementsCard
 );
-
 
 editButton.addEventListener("click", openEditProfilePopup);
 addCardButton.addEventListener("click", openAddCardPopup);
