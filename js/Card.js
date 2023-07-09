@@ -1,13 +1,10 @@
 export default class Card {
-  constructor(data, elementTemplate, cardConf, elementsFullScreen, openPopup) {
+  constructor(data, elementTemplate, cardConf, setElementWithImage) {
     this._name = data.name;
     this._link = data.link;
     this._elementTemplate = elementTemplate;
     this._cardConf = cardConf;
-    this._elementFullScreenImg = elementsFullScreen.elementFullScreenImg;
-    this._titlePopupFullscreen = elementsFullScreen.titlePopupFullscreen;
-    this._popupFullscreen = elementsFullScreen.popupFullscreen;
-    this._openPopup = openPopup;
+    this._setElementWithImage = setElementWithImage;
   }
 
   _getTemplate() {
@@ -43,14 +40,6 @@ export default class Card {
     return this._elementCard;
   }
 
-  // Функция fullScreen картинки
-  _openImagePopup() {
-    this._titlePopupFullscreen.textContent = this._name;
-    this._elementFullScreenImg.alt = this._name;
-    this._elementFullScreenImg.src = this._link;
-    this._openPopup(this._popupFullscreen);
-  }
-
   // Функция удаления карточки
   _removeElementCard() {
     this._elementCard.remove();
@@ -64,7 +53,7 @@ export default class Card {
   _setEventListeners() {
     // FullScreen картинки
     this._elementCardImg.addEventListener("click", () => {
-      this._openImagePopup();
+      this._setElementWithImage.open(this._name, this._link);
     });
     // Удаление карточки
     this._trashButton.addEventListener("click", () => {

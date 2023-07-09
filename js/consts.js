@@ -96,6 +96,11 @@ const elementsFullScreen = {
 };
 
 const popupList = [popupEdit, popupCard, popupFullscreen];
+const buttonsClosePopup = [
+  closeButtonEdit,
+  closeButtonCard,
+  closeButtonFullscreen,
+];
 
 export {
   initialCards,
@@ -125,6 +130,7 @@ export {
   closeButtonEdit,
   closeButtonCard,
   closeButtonFullscreen,
+  buttonsClosePopup,
   formSubmitEditProfile,
   formSubmitAddCard,
 };
