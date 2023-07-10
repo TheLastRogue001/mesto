@@ -1,7 +1,7 @@
 export default class Popup {
-  constructor(popup, buttonsClosePopup) {
+  constructor(popup) {
     this._popup = popup;
-    this._buttonsClosePopup = buttonsClosePopup;
+    this._buttonClose = this._popup.querySelector(".popup__close");;
 
     this._setEventListeners();
   }
@@ -26,12 +26,12 @@ export default class Popup {
   };
 
   _setEventListeners() {
-     // Закрытие popup по нажатию на X
-    this._buttonsClosePopup.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        this.close();
-      });
+    // Закрытие popup по нажатию на X
+
+    this._buttonClose.addEventListener("click", () => {
+      this.close();
     });
+
     // Закрытие popup по нажатию на blum
     this._popup.addEventListener("click", (evt) => {
       if (evt.target === this._popup) {

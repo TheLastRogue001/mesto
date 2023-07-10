@@ -1,13 +1,10 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
-  constructor(data, popup, buttonsClosePopup) {
-    super(popup, buttonsClosePopup);
+  constructor(data, popup) {
+    super(popup);
     this._titlePopupFullscreen = data.titlePopupFullscreen;
     this._elementFullScreenImg = data.elementFullScreenImg;
-    this._popupFullscreen = data.popupFullscreen;
-
-    super._setEventListeners();
   }
 
   open(name, link) {
