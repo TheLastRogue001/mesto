@@ -102,13 +102,6 @@ const elementsFullScreen = {
   popupFullscreen: popupFullscreen,
 };
 
-const popupList = [popupEdit, popupCard, popupFullscreen];
-const buttonsClosePopup = [
-  closeButtonEdit,
-  closeButtonCard,
-  closeButtonFullscreen,
-];
-
 export {
   initialCards,
   validConf,
@@ -117,7 +110,6 @@ export {
   popupEdit,
   popupCard,
   popupFullscreen,
-  popupList,
   popupContainerEdit,
   popupContainerCard,
   popupContainerFullscreen,
@@ -137,7 +129,6 @@ export {
   closeButtonEdit,
   closeButtonCard,
   closeButtonFullscreen,
-  buttonsClosePopup,
   formSubmitEditProfile,
   formSubmitAddCard,
 };
