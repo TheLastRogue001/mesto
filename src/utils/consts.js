@@ -1,38 +1,3 @@
-import dolinaImage from "../images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg";
-import ozeroImage from "../images/thomas-de-luze-w8PWj40lmAk-unsplash.jpg";
-import plyazhImage from "../images/jeff-james-IGzNdZPu4c4-unsplash.jpg";
-import waterImage from "../images/neom-CuoJHB42D1I-unsplash.jpg";
-import kanionImage from "../images/neom-s3leOixsIX0-unsplash.jpg";
-import tropikiImage from "../images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg";
-
-// CardItem
-const initialCards = [
-  {
-    name: "Долина гор",
-    link: dolinaImage,
-  },
-  {
-    name: "Озеро",
-    link: ozeroImage,
-  },
-  {
-    name: "Пляж",
-    link: plyazhImage,
-  },
-  {
-    name: "Подводный мир",
-    link: waterImage,
-  },
-  {
-    name: "Каньон",
-    link: kanionImage,
-  },
-  {
-    name: "Тропики",
-    link: tropikiImage,
-  },
-];
-
 // Object Validation
 const validConf = {
   formSelector: ".popup__form",
@@ -50,6 +15,7 @@ const cardConf = {
   elementCardImg: ".element__img",
   trashButton: ".element__trash",
   likeButton: ".element__like",
+  likesCounter: ".element__like-count",
   likeActiveButton: "element__like_active",
 };
 
@@ -59,10 +25,13 @@ const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const popupCard = document.querySelector(".popup_card");
 const popupFullscreen = document.querySelector(".popup_fullscreen");
+const popupTrash = document.querySelector(".popup_trash");
+const popupAvatar = document.querySelector(".popup_avatar");
 const popupContainerEdit = popupEdit.querySelector(".popup__container");
 const popupContainerCard = popupCard.querySelector(".popup__container");
 const popupContainerFullscreen =
   popupFullscreen.querySelector(".popup__container");
+const popupContainerTrash = popupTrash.querySelector(".popup__container");
 
 // ElementCardImg
 const elementFullScreenImg =
@@ -87,9 +56,11 @@ const inputLink = popupCard.querySelector("#link-input");
 // Button
 const editButton = content.querySelector(".profile__edit-button");
 const addCardButton = content.querySelector(".profile__add-button");
+const avatarButton = content.querySelector(".profile__avatar-button");
 const closeButtonEdit = popupEdit.querySelector(".popup__close");
 const closeButtonCard = popupCard.querySelector(".popup__close");
 const closeButtonFullscreen = popupFullscreen.querySelector(".popup__close");
+const closeButtonTrash = popupTrash.querySelector(".popup__close");
 
 // Form
 const formSubmitEditProfile = popupContainerEdit.querySelector(".popup__form");
@@ -103,16 +74,18 @@ const elementsFullScreen = {
 };
 
 export {
-  initialCards,
   validConf,
   cardConf,
   content,
   popupEdit,
   popupCard,
   popupFullscreen,
+  popupTrash,
+  popupAvatar,
   popupContainerEdit,
   popupContainerCard,
   popupContainerFullscreen,
+  popupContainerTrash,
   elementsFullScreen,
   elementFullScreenImg,
   elementsCard,
@@ -126,9 +99,11 @@ export {
   inputLink,
   editButton,
   addCardButton,
+  avatarButton,
   closeButtonEdit,
   closeButtonCard,
   closeButtonFullscreen,
+  closeButtonTrash,
   formSubmitEditProfile,
   formSubmitAddCard,
 };

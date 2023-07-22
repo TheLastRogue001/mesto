@@ -27,7 +27,6 @@ export default class Popup {
 
   _setEventListeners() {
     // Закрытие popup по нажатию на X
-
     this._buttonClose.addEventListener("click", () => {
       this.close();
     });
