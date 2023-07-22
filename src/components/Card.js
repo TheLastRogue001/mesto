@@ -1,10 +1,15 @@
 export default class Card {
-  constructor(data, elementTemplate, cardConf, setElementWithImage) {
+  constructor(data, elementTemplate, cardConf, callbacks) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
+    this._cardId = data._id;
+    // this._userId = data.owner._id;
     this._elementTemplate = elementTemplate;
     this._cardConf = cardConf;
-    this._setElementWithImage = setElementWithImage;
+    this._handleFullScreen = callbacks.handleFullScreen;
+    this._handleTrashDeleteCard = callbacks.handleTrashDeleteCard;
+    this._isLiked = false;
   }
 
   _getTemplate() {
@@ -27,9 +32,13 @@ export default class Card {
     this._likeButton = this._elementCard.querySelector(
       this._cardConf.likeButton
     );
+    this._likesCounter = this._elementCard.querySelector(
+      this._cardConf.likesCounter
+    );
     this._trashButton = this._elementCard.querySelector(
       this._cardConf.trashButton
     );
+    // if(this._userId !== )
     this._setEventListeners();
 
     // Создание карточек и изменение контента
@@ -40,24 +49,31 @@ export default class Card {
     return this._elementCard;
   }
 
-  // Функция удаления карточки
-  _removeElementCard() {
-    this._elementCard.remove();
-  }
-
   //Добавляет и удаляет активный класс like
   _handleLikeClick() {
-    this._likeButton.classList.toggle(this._cardConf.likeActiveButton);
+    this._isLiked = !this._isLiked;
+    if (this._isLiked) {
+      this._likeButton.classList.add(this._cardConf.likeActiveButton);
+      this._likesCounter.textContent = this._likes.length + 1;
+    } else {
+      this.likeButton.classList.remove(this._cardConf.likeActiveButton);
+      if (this._likes.length === 1 && this._userId === this._currentUserId) {
+        this._likesCounter.textContent = this._likes.length - 1;
+      } else {
+        this._likesCounter.textContent = this._likes.length;
+      }
+    }
+    // this._likeButton.classList.toggle(this._cardConf.likeActiveButton);
   }
 
   _setEventListeners() {
     // FullScreen картинки
     this._elementCardImg.addEventListener("click", () => {
-      this._setElementWithImage.open(this._name, this._link);
+      this._handleFullScreen.open(this._name, this._link);
     });
     // Удаление карточки
     this._trashButton.addEventListener("click", () => {
-      this._removeElementCard();
+      this._handleTrashDeleteCard(this._elementCard);
     });
     // Лайкать карточки
     this._likeButton.addEventListener("click", () => {

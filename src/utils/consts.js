@@ -51,6 +51,7 @@ const cardConf = {
   trashButton: ".element__trash",
   likeButton: ".element__like",
   likeActiveButton: "element__like_active",
+  likesCounter: "element__like-count",
 };
 
 const content = document.querySelector(".content");
@@ -59,10 +60,13 @@ const content = document.querySelector(".content");
 const popupEdit = document.querySelector(".popup_edit");
 const popupCard = document.querySelector(".popup_card");
 const popupFullscreen = document.querySelector(".popup_fullscreen");
+const popupTrash = document.querySelector(".popup_trash");
+const popupAvatar = document.querySelector(".popup_avatar");
 const popupContainerEdit = popupEdit.querySelector(".popup__container");
 const popupContainerCard = popupCard.querySelector(".popup__container");
 const popupContainerFullscreen =
   popupFullscreen.querySelector(".popup__container");
+const popupContainerTrash = popupTrash.querySelector(".popup__container");
 
 // ElementCardImg
 const elementFullScreenImg =
@@ -87,9 +91,11 @@ const inputLink = popupCard.querySelector("#link-input");
 // Button
 const editButton = content.querySelector(".profile__edit-button");
 const addCardButton = content.querySelector(".profile__add-button");
+const avatarButton = content.querySelector(".profile__avatar-button");
 const closeButtonEdit = popupEdit.querySelector(".popup__close");
 const closeButtonCard = popupCard.querySelector(".popup__close");
 const closeButtonFullscreen = popupFullscreen.querySelector(".popup__close");
+const closeButtonTrash = popupTrash.querySelector(".popup__close");
 
 // Form
 const formSubmitEditProfile = popupContainerEdit.querySelector(".popup__form");
@@ -110,9 +116,12 @@ export {
   popupEdit,
   popupCard,
   popupFullscreen,
+  popupTrash,
+  popupAvatar,
   popupContainerEdit,
   popupContainerCard,
   popupContainerFullscreen,
+  popupContainerTrash,
   elementsFullScreen,
   elementFullScreenImg,
   elementsCard,
@@ -126,9 +135,11 @@ export {
   inputLink,
   editButton,
   addCardButton,
+  avatarButton,
   closeButtonEdit,
   closeButtonCard,
   closeButtonFullscreen,
+  closeButtonTrash,
   formSubmitEditProfile,
   formSubmitAddCard,
 };

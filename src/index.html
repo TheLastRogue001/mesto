@@ -12,11 +12,21 @@
   <body class="page">
     <div class="layout">
       <header class="header">
-        <img class="header__logo" alt="Место" src="<%=require('./images/logo_mesto.svg')%>" />
+        <img
+          class="header__logo"
+          alt="Место"
+          src="<%=require('./images/logo_mesto.svg')%>"
+        />
       </header>
       <main class="content">
         <section class="profile">
-          <img class="profile__avatar" alt="Аватар" src="<%=require('./images/Avatar.png')%>" />
+          <button class="profile__avatar-button">
+            <img
+              class="profile__avatar"
+              alt="Аватар"
+              src="<%=require('./images/Avatar.png')%>"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button
@@ -42,7 +52,10 @@
                 class="element__img"
               />
               <h2 class="element__title">Долина гор</h2>
-              <button type="button" class="element__like"></button>
+              <div class="element__content">
+                <button type="button" class="element__like"></button>
+                <p class="element__like-count"></p>
+              </div>
             </div>
           </template>
         </section>
@@ -115,6 +128,49 @@
             <span class="popup__input-error link-input-error"></span>
             <button aria-label="Create" type="submit" class="popup__button">
               Создать
+            </button>
+          </form>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_trash">
+        <div class="popup__container popup__container_size">
+          <h2 class="popup__title popup__title_font-size">Вы уверены?</h2>
+          <form class="popup__form" name="popup-trash" novalidate>
+            <button
+              aria-label="Delete"
+              type="submit"
+              class="popup__button popup__button_size"
+            >
+              Да
+            </button>
+          </form>
+          <button
+            aria-label="Close"
+            type="button"
+            class="popup__close"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_avatar">
+        <div class="popup__container popup__container_size">
+          <h2 class="popup__title popup__title_font-size">Обновить аватар</h2>
+          <form class="popup__form" name="popup-avatar" novalidate>
+            <input
+              id="link-input"
+              class="popup__input"
+              name="avatar"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__input-error link-input-error"></span>
+            <button aria-label="Save" type="submit" class="popup__button">
+              Сохранить
             </button>
           </form>
           <button
