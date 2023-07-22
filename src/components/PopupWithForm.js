@@ -6,6 +6,7 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._popup = popup;
     this._popupCard = document.querySelector(".popup_card");
+    this._popupTrash = document.querySelector(".popup_trash");
     this._popupForm = popup.querySelector(".popup__form");
     this._buttonSubmit = this._popupForm.querySelector(".popup__button");
     this._inputList = Array.from(
@@ -27,8 +28,12 @@ export default class PopupWithForm extends Popup {
     super._setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      if (this._popup != this._popupCard)
+      if (this._popup != this._popupCard || this._popup != this._popupTrash)
         this._buttonSubmit.textContent = "Сохранение...";
+      if (this._popup === this._popupTrash)
+        this._buttonSubmit.textContent = "Удаление...";
+      if (this._popup === this._popupCard)
+        this._buttonSubmit.textContent = "Создание карточки...";
       this._handleFormSubmit(this._getInputValues());
     });
   }
@@ -41,8 +46,11 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    if (this._popup != this._popupCard)
-      this._buttonSubmit.textContent = "Сохранить";
     this._popupForm.reset();
+    if (this._popup != this._popupCard || this._popup != this._popupTrash)
+      this._buttonSubmit.textContent = "Сохранить";
+    if (this._popup === this._popupTrash) this._buttonSubmit.textContent = "Да";
+    if (this._popup === this._popupCard)
+      this._buttonSubmit.textContent = "Создать";
   }
 }

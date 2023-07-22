@@ -6,8 +6,6 @@ export default class Section {
   }
 
   addItem(element) {
-    const deleteTrashButton = element.querySelector(".element__trash");
-    deleteTrashButton.remove();
     this._container.append(element);
   }
 
@@ -16,7 +14,6 @@ export default class Section {
   }
 
   renderItems() {
-    console.log(this._renderedItems);
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });

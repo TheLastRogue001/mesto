@@ -1,38 +1,3 @@
-import dolinaImage from "../images/eberhard-grossgasteiger-DsdlOxx2mz0-unsplash.jpg";
-import ozeroImage from "../images/thomas-de-luze-w8PWj40lmAk-unsplash.jpg";
-import plyazhImage from "../images/jeff-james-IGzNdZPu4c4-unsplash.jpg";
-import waterImage from "../images/neom-CuoJHB42D1I-unsplash.jpg";
-import kanionImage from "../images/neom-s3leOixsIX0-unsplash.jpg";
-import tropikiImage from "../images/reinaldo-photography-Nim4ksJEYFs-unsplash.jpg";
-
-// CardItem
-const initialCards = [
-  {
-    name: "Долина гор",
-    link: dolinaImage,
-  },
-  {
-    name: "Озеро",
-    link: ozeroImage,
-  },
-  {
-    name: "Пляж",
-    link: plyazhImage,
-  },
-  {
-    name: "Подводный мир",
-    link: waterImage,
-  },
-  {
-    name: "Каньон",
-    link: kanionImage,
-  },
-  {
-    name: "Тропики",
-    link: tropikiImage,
-  },
-];
-
 // Object Validation
 const validConf = {
   formSelector: ".popup__form",
@@ -50,8 +15,8 @@ const cardConf = {
   elementCardImg: ".element__img",
   trashButton: ".element__trash",
   likeButton: ".element__like",
+  likesCounter: ".element__like-count",
   likeActiveButton: "element__like_active",
-  likesCounter: "element__like-count",
 };
 
 const content = document.querySelector(".content");
@@ -109,7 +74,6 @@ const elementsFullScreen = {
 };
 
 export {
-  initialCards,
   validConf,
   cardConf,
   content,
