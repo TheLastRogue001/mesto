@@ -28,13 +28,7 @@ export default class PopupWithForm extends Popup {
     super._setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      if (this._popup != this._popupCard || this._popup != this._popupTrash)
-        this._buttonSubmit.textContent = "Сохранение...";
-      if (this._popup === this._popupTrash)
-        this._buttonSubmit.textContent = "Удаление...";
-      if (this._popup === this._popupCard)
-        this._buttonSubmit.textContent = "Создание карточки...";
-      this._handleFormSubmit(this._getInputValues());
+      this._handleFormSubmit(this._getInputValues(), this._buttonSubmit);
     });
   }
 
@@ -47,10 +41,5 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._popupForm.reset();
-    if (this._popup != this._popupCard || this._popup != this._popupTrash)
-      this._buttonSubmit.textContent = "Сохранить";
-    if (this._popup === this._popupTrash) this._buttonSubmit.textContent = "Да";
-    if (this._popup === this._popupCard)
-      this._buttonSubmit.textContent = "Создать";
   }
 }

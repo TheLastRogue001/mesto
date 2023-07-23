@@ -1,19 +1,17 @@
 export default class Card {
-  constructor(data, elementTemplate, cardConf, currentUser, callbacks) {
+  constructor(data, elementTemplate, cardConf, currentUserId, callbacks) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._cardId = data._id;
     this._userId = data.owner._id;
-    this._currentUserId = currentUser._id;
-    this._currentUser = currentUser;
+    this._currentUserId = currentUserId;
     this._elementTemplate = elementTemplate;
     this._cardConf = cardConf;
     this._handleFullScreen = callbacks.handleFullScreen;
-    this._handleTrashDeleteCard = callbacks.handleTrashDeleteCard;
-    this._handleLikeApi = callbacks.handleApi;
-    this._handleRemoveCard = callbacks.handleApi;
+    this._handleTrashDeleteCard = callbacks.handleDeleteCard;
+    this._handleLikeCard = callbacks.handleLikeCard;
     this._isLiked = false;
   }
 
@@ -47,8 +45,8 @@ export default class Card {
     }
     for (let i = 0; i < this._likes.length; i++) {
       if (this._likes[i]._id === this._currentUserId) {
-        this._isLiked = true;
         this._likeButton.classList.add(this._cardConf.likeActiveButton);
+        this._isLiked = true;
       }
     }
     this._setEventListeners();
@@ -62,30 +60,6 @@ export default class Card {
     return this._elementCard;
   }
 
-  //Добавляет и удаляет активный класс like
-  async _handleLikeClick() {
-    this._isLiked = !this._isLiked;
-    if (this._isLiked) {
-      this._likeActive = await this._handleLikeApi
-        .likeActiveInitialCards(this._cardId)
-        .then((result) => result)
-        .catch((err) => {
-          console.log(err);
-        });
-      this._likesCounter.textContent = this._likeActive.likes.length;
-      this._likeButton.classList.add(this._cardConf.likeActiveButton);
-    } else {
-      this._likeEnabled = await this._handleLikeApi
-        .likeEnabledInitialCards(this._cardId)
-        .then((result) => result)
-        .catch((err) => {
-          console.log(err);
-        });
-      this._likesCounter.textContent = this._likeEnabled.likes.length;
-      this._likeButton.classList.remove(this._cardConf.likeActiveButton);
-    }
-  }
-
   _setEventListeners() {
     // FullScreen картинки
     this._elementCardImg.addEventListener("click", () => {
@@ -93,11 +67,18 @@ export default class Card {
     });
     // Удаление карточки
     this._trashButton.addEventListener("click", () => {
-      this._handleTrashDeleteCard(this._elementCard, this._cardId);
+      this._handleTrashDeleteCard.open(this._cardId, this._elementCard);
     });
     // Лайкать карточки
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeClick();
+      this._isLiked = !this._isLiked;
+      this._handleLikeCard(
+        this._cardId,
+        this._isLiked,
+        this._likesCounter,
+        this._likeButton,
+        this._cardConf
+      );
     });
   }
 }
