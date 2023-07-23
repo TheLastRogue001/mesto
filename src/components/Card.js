@@ -9,6 +9,7 @@ export default class Card {
     this._currentUserId = currentUserId;
     this._elementTemplate = elementTemplate;
     this._cardConf = cardConf;
+    this._callbacks = callbacks;
     this._handleFullScreen = callbacks.handleFullScreen;
     this._handleTrashDeleteCard = callbacks.handleDeleteCard;
     this._handleLikeCard = callbacks.handleLikeCard;
@@ -60,6 +61,20 @@ export default class Card {
     return this._elementCard;
   }
 
+  removeElementCard(elementCard) {
+    elementCard.remove();
+  }
+
+  setLikeCard(likeActive, likesCounter, likeButton) {
+    likesCounter.textContent = likeActive.likes.length;
+    likeButton.classList.add(this._cardConf.likeActiveButton);
+  }
+
+  removeLikeCard(likeEnabled, likesCounter, likeButton) {
+    likesCounter.textContent = likeEnabled.likes.length;
+    likeButton.classList.remove(this._cardConf.likeActiveButton);
+  }
+
   _setEventListeners() {
     // FullScreen картинки
     this._elementCardImg.addEventListener("click", () => {
@@ -67,17 +82,24 @@ export default class Card {
     });
     // Удаление карточки
     this._trashButton.addEventListener("click", () => {
-      this._handleTrashDeleteCard.open(this._cardId, this._elementCard);
+      this._handleTrashDeleteCard.open(
+        this._cardId,
+        this._elementCard,
+        this.removeElementCard
+      );
     });
     // Лайкать карточки
     this._likeButton.addEventListener("click", () => {
       this._isLiked = !this._isLiked;
       this._handleLikeCard(
+        this._data,
+        this._cardConf,
+        this._currentUserId,
+        this._callbacks,
         this._cardId,
         this._isLiked,
         this._likesCounter,
-        this._likeButton,
-        this._cardConf
+        this._likeButton
       );
     });
   }

@@ -31,6 +31,13 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+const loadApiPromise = (api, buttonSubmit, proccessName) => {
+  const newPromise = new Promise(function (resolve) {
+    if (buttonSubmit) buttonSubmit.textContent = proccessName;
+    resolve(api);
+  });
+  return newPromise;
+};
 
 const userInfo = new UserInfo({
   userName: ".profile__title",
@@ -39,11 +46,10 @@ const userInfo = new UserInfo({
 });
 
 const popupWithDeleteCard = new PopupWithDeleteCard(
-  (cardId, elementCard, buttonSubmit) => {
-    Promise.all([api.deleteInitialCards(cardId)])
+  (cardId, elementCard, removeElementCard, buttonSubmit) => {
+    loadApiPromise(api.deleteInitialCards(cardId), buttonSubmit, "Удаление...")
       .then(() => {
-        buttonSubmit.textContent = "Удаление...";
-        elementCard.remove();
+        removeElementCard(elementCard);
       })
       .catch((err) => {
         console.log(`Ошибка данных: ${err}`);
@@ -62,21 +68,35 @@ const popupWithImage = new PopupWithImage(
 );
 
 //Добавляет и удаляет активный класс like
-const cardLike = (cardId, isLiked, likesCounter, likeButton, cardConf) => {
+const cardLike = (
+  data,
+  cardConf,
+  currentUserId,
+  callbacks,
+  cardId,
+  isLiked,
+  likesCounter,
+  likeButton
+) => {
+  const card = new Card(
+    data,
+    elementTemplate,
+    cardConf,
+    currentUserId,
+    callbacks
+  );
   if (isLiked) {
-    Promise.all([api.likeActiveInitialCards(cardId)])
-      .then(([likeActive]) => {
-        likesCounter.textContent = likeActive.likes.length;
-        likeButton.classList.add(cardConf.likeActiveButton);
+    loadApiPromise(api.likeActiveInitialCards(cardId))
+      .then((likeActive) => {
+        card.setLikeCard(likeActive, likesCounter, likeButton);
       })
       .catch((err) => {
         console.log(`Ошибка данных: ${err}`);
       });
   } else {
-    Promise.all([api.likeEnabledInitialCards(cardId)])
-      .then(([likeEnabled]) => {
-        likesCounter.textContent = likeEnabled.likes.length;
-        likeButton.classList.remove(cardConf.likeActiveButton);
+    loadApiPromise(api.likeEnabledInitialCards(cardId))
+      .then((likeEnabled) => {
+        card.removeLikeCard(likeEnabled, likesCounter, likeButton);
       })
       .catch((err) => {
         console.log(`Ошибка данных: ${err}`);
@@ -184,9 +204,12 @@ const openAvatarPopup = () => {
 
 // Открывает модально окно с изменением профиля
 const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
-  Promise.all([api.updateUserProfile(data.name, data.job)])
-    .then(([userData]) => {
-      buttonSubmit.textContent = "Сохранение...";
+  loadApiPromise(
+    api.updateUserProfile(data.name, data.job),
+    buttonSubmit,
+    "Сохранение..."
+  )
+    .then((userData) => {
       userInfo.setUserInfo(userData.name, userData.about);
       popupWithFormEditProfile.close();
     })
@@ -200,8 +223,12 @@ const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
 
 // Открывает модально окно с изменением профиля
 const popupWithFormAvatar = new PopupWithForm((data, buttonSubmit) => {
-  Promise.all([api.updateAvatarProfile(data.avatar)])
-    .then(([userData]) => {
+  loadApiPromise(
+    api.updateAvatarProfile(data.avatar),
+    buttonSubmit,
+    "Сохранение..."
+  )
+    .then((userData) => {
       buttonSubmit.textContent = "Сохранение...";
       userInfo.setUserAvatar(userData.avatar);
       popupWithFormAvatar.close();
@@ -220,8 +247,8 @@ const popupWithFormAddCard = new PopupWithForm((item, buttonSubmit) => {
     api.renderInitialCards(item.card, item.link),
     api.getUserProfile(),
   ])
+    .then((buttonSubmit.textContent = "Создание карточки..."))
     .then(([newInitialCards, userData]) => {
-      buttonSubmit.textContent = "Создание карточки...";
       renderCards(
         newInitialCards,
         elementTemplate,

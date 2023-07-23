@@ -8,22 +8,24 @@ export default class PopupWithDeleteCard extends Popup {
     this._buttonSubmit = this._popup.querySelector(".popup__button");
   }
 
-  open(cardId, elementCard) {
+  open(cardId, elementCard, removeElementCard) {
     this._cardId = cardId;
     this._elementCard = elementCard;
+    this.removeElementCard = removeElementCard;
 
     super.open();
-  }
-
-  close() {
-    super.close();
   }
 
   setEventListeners() {
     super._setEventListeners();
     this._buttonSubmit.addEventListener("click", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._cardId, this._elementCard, this._buttonSubmit);
+      this._handleFormSubmit(
+        this._cardId,
+        this._elementCard,
+        this.removeElementCard,
+        this._buttonSubmit
+      );
     });
   }
 }
