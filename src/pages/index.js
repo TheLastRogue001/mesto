@@ -51,7 +51,7 @@ const popupWithDeleteCard = new PopupWithDeleteCard(
         console.log(`Ошибка данных: ${err}`);
       })
       .finally(() => {
-        buttonSubmit.textContent = "Да";
+        popupWithDeleteCard.setTextSubmitButton("Да");
       });
   },
   popupTrash
@@ -213,7 +213,7 @@ const popupWithFormEditProfile = new PopupWithForm((data) => {
       console.log(`Ошибка данных: ${err}`);
     })
     .finally(() => {
-      buttonSubmit.textContent = "Сохранить";
+      popupWithFormEditProfile.setTextSubmitButton("Сохранить");
     });
 }, popupEdit);
 
@@ -230,7 +230,7 @@ const popupWithFormAvatar = new PopupWithForm((data) => {
       console.log(`Ошибка данных: ${err}`);
     })
     .finally(() => {
-      buttonSubmit.textContent = "Сохранить";
+      popupWithFormAvatar.setTextSubmitButton("Сохранить");
     });
 }, popupAvatar);
 
@@ -262,7 +262,7 @@ const popupWithFormAddCard = new PopupWithForm((item) => {
       console.log(`Ошибка данных: ${err}`);
     })
     .finally(() => {
-      buttonSubmit.textContent = "Создать";
+      popupWithFormAddCard.setTextSubmitButton("Создать");
     });
 }, popupCard);
 
