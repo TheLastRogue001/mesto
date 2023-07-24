@@ -31,13 +31,6 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-const loadApiPromise = (api, buttonSubmit, proccessName) => {
-  const newPromise = new Promise(function (resolve) {
-    if (buttonSubmit) buttonSubmit.textContent = proccessName;
-    resolve(api);
-  });
-  return newPromise;
-};
 
 const userInfo = new UserInfo({
   userName: ".profile__title",
@@ -47,9 +40,12 @@ const userInfo = new UserInfo({
 
 const popupWithDeleteCard = new PopupWithDeleteCard(
   (cardId, elementCard, removeElementCard, buttonSubmit) => {
-    loadApiPromise(api.deleteInitialCards(cardId), buttonSubmit, "Удаление...")
+    buttonSubmit.textContent = "Удаление...";
+    api
+      .deleteInitialCards(cardId)
       .then(() => {
         removeElementCard(elementCard);
+        popupWithDeleteCard.close();
       })
       .catch((err) => {
         console.log(`Ошибка данных: ${err}`);
@@ -57,7 +53,6 @@ const popupWithDeleteCard = new PopupWithDeleteCard(
       .finally(() => {
         buttonSubmit.textContent = "Да";
       });
-    popupWithDeleteCard.close();
   },
   popupTrash
 );
@@ -86,7 +81,8 @@ const cardLike = (
     callbacks
   );
   if (isLiked) {
-    loadApiPromise(api.likeActiveInitialCards(cardId))
+    api
+      .likeActiveInitialCards(cardId)
       .then((likeActive) => {
         card.setLikeCard(likeActive, likesCounter, likeButton);
       })
@@ -94,7 +90,8 @@ const cardLike = (
         console.log(`Ошибка данных: ${err}`);
       });
   } else {
-    loadApiPromise(api.likeEnabledInitialCards(cardId))
+    api
+      .likeEnabledInitialCards(cardId)
       .then((likeEnabled) => {
         card.removeLikeCard(likeEnabled, likesCounter, likeButton);
       })
@@ -155,6 +152,7 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
+    userInfo.setUserId(userData._id);
 
     renderCards(
       initialCards,
@@ -204,11 +202,9 @@ const openAvatarPopup = () => {
 
 // Открывает модально окно с изменением профиля
 const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
-  loadApiPromise(
-    api.updateUserProfile(data.name, data.job),
-    buttonSubmit,
-    "Сохранение..."
-  )
+  buttonSubmit.textContent = "Сохранение...";
+  api
+    .updateUserProfile(data.name, data.job)
     .then((userData) => {
       userInfo.setUserInfo(userData.name, userData.about);
       popupWithFormEditProfile.close();
@@ -223,13 +219,10 @@ const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
 
 // Открывает модально окно с изменением профиля
 const popupWithFormAvatar = new PopupWithForm((data, buttonSubmit) => {
-  loadApiPromise(
-    api.updateAvatarProfile(data.avatar),
-    buttonSubmit,
-    "Сохранение..."
-  )
+  buttonSubmit.textContent = "Сохранение...";
+  api
+    .updateAvatarProfile(data.avatar)
     .then((userData) => {
-      buttonSubmit.textContent = "Сохранение...";
       userInfo.setUserAvatar(userData.avatar);
       popupWithFormAvatar.close();
     })
@@ -243,24 +236,23 @@ const popupWithFormAvatar = new PopupWithForm((data, buttonSubmit) => {
 
 //Форма для отправки названия картинки и картинку
 const popupWithFormAddCard = new PopupWithForm((item, buttonSubmit) => {
-  Promise.all([
-    api.renderInitialCards(item.card, item.link),
-    api.getUserProfile(),
-  ])
-    .then((buttonSubmit.textContent = "Создание карточки..."))
-    .then(([newInitialCards, userData]) => {
+  buttonSubmit.textContent = "Создание карточки...";
+  const userId = userInfo.getUserInfo().userId;
+  api
+    .renderInitialCards(item.card, item.link)
+    .then((newInitialCards) => {
       renderCards(
         newInitialCards,
         elementTemplate,
         cardConf,
-        userData._id,
+        userId,
         callbacks
       ).prependItem(
         createCard(
           newInitialCards,
           elementTemplate,
           cardConf,
-          userData._id,
+          userId,
           callbacks
         )
       );
