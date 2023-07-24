@@ -39,8 +39,8 @@ const userInfo = new UserInfo({
 });
 
 const popupWithDeleteCard = new PopupWithDeleteCard(
-  (cardId, elementCard, removeElementCard, buttonSubmit) => {
-    buttonSubmit.textContent = "Удаление...";
+  (cardId, elementCard, removeElementCard) => {
+    popupWithDeleteCard.setTextSubmitButton("Удаление...");
     api
       .deleteInitialCards(cardId)
       .then(() => {
@@ -201,8 +201,8 @@ const openAvatarPopup = () => {
 };
 
 // Открывает модально окно с изменением профиля
-const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
-  buttonSubmit.textContent = "Сохранение...";
+const popupWithFormEditProfile = new PopupWithForm((data) => {
+  popupWithFormEditProfile.setTextSubmitButton("Сохранение...");
   api
     .updateUserProfile(data.name, data.job)
     .then((userData) => {
@@ -218,8 +218,8 @@ const popupWithFormEditProfile = new PopupWithForm((data, buttonSubmit) => {
 }, popupEdit);
 
 // Открывает модально окно с изменением профиля
-const popupWithFormAvatar = new PopupWithForm((data, buttonSubmit) => {
-  buttonSubmit.textContent = "Сохранение...";
+const popupWithFormAvatar = new PopupWithForm((data) => {
+  popupWithFormAvatar.setTextSubmitButton("Сохранение...");
   api
     .updateAvatarProfile(data.avatar)
     .then((userData) => {
@@ -235,8 +235,8 @@ const popupWithFormAvatar = new PopupWithForm((data, buttonSubmit) => {
 }, popupAvatar);
 
 //Форма для отправки названия картинки и картинку
-const popupWithFormAddCard = new PopupWithForm((item, buttonSubmit) => {
-  buttonSubmit.textContent = "Создание карточки...";
+const popupWithFormAddCard = new PopupWithForm((item) => {
+  popupWithFormAddCard.setTextSubmitButton("Создание карточки...");
   const userId = userInfo.getUserInfo().userId;
   api
     .renderInitialCards(item.card, item.link)

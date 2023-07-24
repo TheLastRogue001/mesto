@@ -16,6 +16,10 @@ export default class PopupWithDeleteCard extends Popup {
     super.open();
   }
 
+  setTextSubmitButton(text) {
+    this._buttonSubmit.textContent = text;
+  }
+
   setEventListeners() {
     super._setEventListeners();
     this._buttonSubmit.addEventListener("click", (evt) => {
@@ -23,8 +27,7 @@ export default class PopupWithDeleteCard extends Popup {
       this._handleFormSubmit(
         this._cardId,
         this._elementCard,
-        this.removeElementCard,
-        this._buttonSubmit
+        this.removeElementCard
       );
     });
   }
