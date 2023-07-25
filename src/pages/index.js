@@ -63,23 +63,7 @@ const popupWithImage = new PopupWithImage(
 );
 
 //Добавляет и удаляет активный класс like
-const cardLike = (
-  data,
-  cardConf,
-  currentUserId,
-  callbacks,
-  cardId,
-  isLiked,
-  likesCounter,
-  likeButton
-) => {
-  const card = new Card(
-    data,
-    elementTemplate,
-    cardConf,
-    currentUserId,
-    callbacks
-  );
+const cardLike = (card, cardId, isLiked, likesCounter, likeButton) => {
   if (isLiked) {
     api
       .likeActiveInitialCards(cardId)
@@ -237,7 +221,7 @@ const popupWithFormAvatar = new PopupWithForm((data) => {
 //Форма для отправки названия картинки и картинку
 const popupWithFormAddCard = new PopupWithForm((item) => {
   popupWithFormAddCard.setTextSubmitButton("Создание карточки...");
-  const userId = userInfo.getUserInfo().userId;
+  const userId = userInfo.getUserId();
   api
     .renderInitialCards(item.card, item.link)
     .then((newInitialCards) => {

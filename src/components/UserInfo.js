@@ -10,7 +10,6 @@ export default class UserInfo {
       name: this._userName.textContent,
       job: this._userJob.textContent,
       avatar: this._userAvatar.src,
-      userId: this._userId,
     };
     return userInfo;
   }
@@ -26,5 +25,9 @@ export default class UserInfo {
 
   setUserId(userId) {
     this._userId = userId;
+  }
+
+  getUserId() {
+    return this._userId;
   }
 }

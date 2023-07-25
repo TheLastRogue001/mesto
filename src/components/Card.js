@@ -14,6 +14,7 @@ export default class Card {
     this._handleTrashDeleteCard = callbacks.handleDeleteCard;
     this._handleLikeCard = callbacks.handleLikeCard;
     this._isLiked = false;
+    this._card = this;
   }
 
   _getTemplate() {
@@ -92,10 +93,7 @@ export default class Card {
     this._likeButton.addEventListener("click", () => {
       this._isLiked = !this._isLiked;
       this._handleLikeCard(
-        this._data,
-        this._cardConf,
-        this._currentUserId,
-        this._callbacks,
+        this._card,
         this._cardId,
         this._isLiked,
         this._likesCounter,
